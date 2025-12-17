@@ -159,12 +159,12 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
       width: 90%;
-      max-width: 700px;
-      max-height: 92vh;
+      max-width: 650px;
+      max-height: 90vh;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(25px);
-      border-radius: 25px;
-      padding: 20px;
+      border-radius: 20px;
+      padding: 15px;
       border: 2px solid rgba(255, 255, 255, 0.3);
       text-align: center;
       color: white;
@@ -192,16 +192,16 @@
 
     .slideshow {
       width: 100%;
-      height: 40vh;
-      max-height: 400px;
-      border-radius: 15px;
+      height: 32vh;
+      max-height: 300px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       position: relative;
-      border: 3px solid rgba(255, 215, 0, 0.6);
+      border: 2px solid rgba(255, 215, 0, 0.6);
       box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(255, 107, 157, 0.3);
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 107, 157, 0.3);
       flex-shrink: 0;
     }
 
@@ -222,8 +222,8 @@
 
     h1 {
       font-family: "Dancing Script", cursive;
-      font-size: clamp(1.8em, 4vw, 2.8em);
-      margin: 0 0 10px 0;
+      font-size: clamp(1.5em, 3.5vw, 2.2em);
+      margin: 0 0 8px 0;
       background: linear-gradient(135deg, #ff6b9d, #ffd700, #ff6b9d);
       background-size: 200% 200%;
       -webkit-background-clip: text;
@@ -247,28 +247,15 @@
     }
 
     #typewriter {
-      font-size: clamp(0.75em, 1.8vw, 0.95em);
-      line-height: 1.5;
+      font-size: clamp(0.68em, 1.5vw, 0.82em);
+      line-height: 1.45;
       text-align: left;
       margin-top: 5px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       font-weight: 500;
       width: 100%;
-      overflow-y: auto;
-      max-height: 35vh;
-    }
-
-    #typewriter::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    #typewriter::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    #typewriter::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.3);
-      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 1;
     }
 
     /* ========== RESPONSIVE DESIGN ========== */
@@ -276,77 +263,57 @@
     /* Large Desktop (1920px+) */
     @media (min-width: 1920px) {
       .content {
-        max-width: 800px;
-        padding: 25px;
+        max-width: 750px;
+        padding: 20px;
       }
 
       .slideshow {
-        height: 42vh;
-        max-height: 450px;
+        height: 35vh;
+        max-height: 350px;
       }
     }
 
     /* Desktop (1200px - 1919px) */
     @media (min-width: 1200px) and (max-width: 1919px) {
       .content {
-        max-width: 700px;
-        padding: 22px;
+        max-width: 650px;
+        padding: 18px;
       }
 
       .slideshow {
-        height: 40vh;
-        max-height: 380px;
+        height: 32vh;
+        max-height: 300px;
       }
     }
 
     /* Tablet Landscape (992px - 1199px) */
     @media (min-width: 992px) and (max-width: 1199px) {
       .content {
-        max-width: 650px;
-        padding: 20px;
-      }
-
-      .slideshow {
-        height: 38vh;
-        max-height: 320px;
-      }
-
-      .tap-hint {
-        font-size: 1.1em;
-        bottom: 60px;
-      }
-    }
-
-    /* Tablet Portrait (768px - 991px) */
-    @media (min-width: 768px) and (max-width: 991px) {
-      .content {
         max-width: 600px;
-        padding: 18px;
+        padding: 15px;
       }
 
       .slideshow {
-        height: 36vh;
+        height: 30vh;
         max-height: 280px;
       }
 
       .tap-hint {
         font-size: 1.05em;
         bottom: 55px;
-        padding: 9px 18px;
       }
     }
 
-    /* Mobile Landscape (576px - 767px) */
-    @media (min-width: 576px) and (max-width: 767px) {
+    /* Tablet Portrait (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
       .content {
-        width: 95%;
-        max-width: 520px;
-        padding: 15px;
+        max-width: 550px;
+        padding: 14px;
       }
 
       .slideshow {
-        height: 32vh;
-        max-height: 240px;
+        height: 28vh;
+        max-height: 250px;
       }
 
       .tap-hint {
@@ -356,98 +323,109 @@
       }
     }
 
-    /* Mobile Portrait (up to 575px) */
-    @media (max-width: 575px) {
+    /* Mobile Landscape (576px - 767px) */
+    @media (min-width: 576px) and (max-width: 767px) {
       .content {
         width: 95%;
+        max-width: 500px;
         padding: 12px;
-        border-radius: 18px;
-        max-height: 90vh;
       }
 
       .slideshow {
-        height: 30vh;
-        max-height: 220px;
-        border-radius: 12px;
-        margin-bottom: 10px;
-        border: 2px solid rgba(255, 215, 0, 0.6);
-      }
-
-      #typewriter {
-        max-height: 32vh;
+        height: 26vh;
+        max-height: 200px;
       }
 
       .tap-hint {
         font-size: 0.95em;
         bottom: 45px;
         padding: 7px 14px;
-        border-radius: 18px;
-        white-space: normal;
-        text-align: center;
-        max-width: 90%;
-      }
-
-      .loader {
-        width: 40px;
-        height: 40px;
-        border-width: 4px;
-      }
-
-      #loading {
-        font-size: 1.1em;
       }
     }
 
-    /* Extra Small Mobile (up to 375px) */
-    @media (max-width: 375px) {
+    /* Mobile Portrait (up to 575px) */
+    @media (max-width: 575px) {
       .content {
+        width: 95%;
         padding: 10px;
-        max-height: 92vh;
+        border-radius: 15px;
+        max-height: 90vh;
       }
 
       .slideshow {
         height: 28vh;
         max-height: 200px;
+        border-radius: 10px;
         margin-bottom: 8px;
-      }
-
-      #typewriter {
-        max-height: 35vh;
+        border: 2px solid rgba(255, 215, 0, 0.6);
       }
 
       .tap-hint {
         font-size: 0.9em;
         bottom: 40px;
         padding: 6px 12px;
+        border-radius: 15px;
+        white-space: normal;
+        text-align: center;
+        max-width: 90%;
+      }
+
+      .loader {
+        width: 35px;
+        height: 35px;
+        border-width: 3px;
+      }
+
+      #loading {
+        font-size: 1em;
       }
     }
 
-    /* Landscape Orientation Adjustments */
-    @media (max-height: 600px) and (orientation: landscape) {
+    /* Extra Small Mobile (up to 375px) */
+    @media (max-width: 375px) {
       .content {
         padding: 8px;
         max-height: 92vh;
       }
 
       .slideshow {
-        height: 35vh;
+        height: 26vh;
         max-height: 180px;
         margin-bottom: 6px;
       }
 
-      h1 {
+      .tap-hint {
+        font-size: 0.85em;
+        bottom: 35px;
+        padding: 5px 10px;
+      }
+    }
+
+    /* Landscape Orientation Adjustments */
+    @media (max-height: 600px) and (orientation: landscape) {
+      .content {
+        padding: 6px;
+        max-height: 94vh;
+      }
+
+      .slideshow {
+        height: 32vh;
+        max-height: 160px;
         margin-bottom: 5px;
       }
 
+      h1 {
+        margin-bottom: 4px;
+      }
+
       #typewriter {
-        max-height: 28vh;
-        line-height: 1.4;
+        line-height: 1.35;
       }
 
       .tap-hint {
-        bottom: 25px;
-        font-size: 0.85em;
-        padding: 6px 12px;
+        bottom: 20px;
+        font-size: 0.8em;
+        padding: 5px 10px;
       }
     }
 
