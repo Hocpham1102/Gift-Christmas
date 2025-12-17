@@ -3,146 +3,235 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gửi Em - Mùa Giáng Sinh Ấm Áp</title>
+    <title>Món Quà Giáng Sinh Đặc Biệt</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* --- Cấu hình chung --- */
+      :root {
+        --box-color: #e74c3c;
+        --ribbon-color: #f1c40f;
+        --bg-dark: #0f2027;
+      }
+
       body {
         margin: 0;
         padding: 0;
-        background: radial-gradient(circle at bottom, #1b2735 0%, #090a0f 100%);
         height: 100vh;
-        overflow: hidden;
-        font-family: "Nunito", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
+        background: radial-gradient(
+          circle at center,
+          #203a43,
+          #2c5364,
+          #0f2027
+        );
+        font-family: "Quicksand", sans-serif;
+        overflow: hidden;
+        perspective: 1000px;
       }
 
-      /* --- Hiệu ứng tuyết rơi --- */
-      .snowflake {
+      /* --- Hiệu ứng tuyết & đom đóm --- */
+      #canvas-bg {
         position: absolute;
-        top: -10px;
-        color: #fff;
-        animation: fall linear infinite;
-        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
       }
 
-      @keyframes fall {
-        to {
-          transform: translateY(105vh);
-        }
-      }
-
-      /* --- Hộp quà (Màn hình chính) --- */
-      .gift-container {
-        text-align: center;
+      /* --- Hộp quà 3D --- */
+      .container {
+        position: relative;
+        width: 200px;
+        height: 200px;
         z-index: 10;
         cursor: pointer;
-        transition: transform 0.3s;
+        transition: all 1s ease;
       }
 
-      .gift-container:hover {
-        transform: scale(1.1);
+      .gift {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+        animation: rotateBox 10s infinite linear;
       }
 
-      .gift-box {
-        font-size: 80px;
-        animation: shake 2s infinite;
+      .container:hover .gift {
+        animation-play-state: paused;
       }
 
-      .click-hint {
-        margin-top: 10px;
-        font-size: 18px;
-        opacity: 0.8;
-        animation: blink 1.5s infinite;
+      .face {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: var(--box-color);
+        border: 2px solid #c0392b;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
       }
 
-      /* --- Nội dung thiệp (Ẩn lúc đầu) --- */
-      .card-container {
-        display: none;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.2);
+      /* Dây ruy băng */
+      .face::before {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 100%;
+        background: var(--ribbon-color);
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+      }
+
+      .face::after {
+        content: "";
+        position: absolute;
+        height: 40px;
+        width: 100%;
+        background: var(--ribbon-color);
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+      }
+
+      /* Các mặt của hộp */
+      .front {
+        transform: translateZ(100px);
+      }
+      .back {
+        transform: rotateY(180deg) translateZ(100px);
+      }
+      .right {
+        transform: rotateY(90deg) translateZ(100px);
+      }
+      .left {
+        transform: rotateY(-90deg) translateZ(100px);
+      }
+      .bottom {
+        transform: rotateX(-90deg) translateZ(100px);
+      }
+      .top {
+        transform: rotateX(90deg) translateZ(100px);
+        transform-origin: bottom;
+        transition: transform 1s ease-in-out, opacity 0.5s;
+      }
+
+      /* Trạng thái mở hộp */
+      .container.open .gift {
+        animation: none;
+        transform: rotateY(-30deg) rotateX(10deg);
+      }
+
+      .container.open .top {
+        transform: rotateX(90deg) translateZ(100px) rotateX(-120deg);
+        opacity: 0;
+      }
+
+      .container.open {
+        transform: translateY(200px) scale(0);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* --- Nội dung thư & Album ảnh --- */
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 80%; /* Rộng hơn trên mobile */
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
         border-radius: 20px;
-        padding: 40px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         text-align: center;
-        max-width: 90%;
-        width: 400px;
-        box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        color: white;
+        opacity: 0;
+        transition: all 0.8s ease;
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
         z-index: 20;
-        position: relative;
-        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
-      .photo-frame {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto 20px;
-        border-radius: 50%;
-        border: 5px solid #e74c3c;
+      .content.active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      /* Album ảnh */
+      .slideshow {
+        width: 100%;
+        height: 250px;
+        border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+        margin-bottom: 20px;
+        position: relative;
+        border: 3px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
 
-      .photo-frame img {
+      .slide-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .slide-img.active {
+        opacity: 1;
       }
 
       h1 {
         font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
-        color: #e74c3c; /* Màu đỏ giáng sinh */
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 3em;
+        margin: 0;
+        color: #ff6b6b;
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
       }
 
-      p {
-        font-size: 1.1rem;
+      #typewriter {
+        font-size: 1.1em;
         line-height: 1.6;
-        color: #ecf0f1;
+        min-height: 100px;
+        text-align: left;
+        margin-top: 15px;
       }
 
-      .heart {
-        color: #e74c3c;
-        animation: beat 1s infinite;
+      .cursor {
         display: inline-block;
+        width: 2px;
+        background-color: white;
+        animation: blink 1s infinite;
       }
 
-      /* --- Nút phát nhạc --- */
-      .music-control {
+      .tap-hint {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 10px;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 100;
+        bottom: -50px;
+        color: white;
+        font-weight: bold;
+        animation: bounce 1s infinite alternate;
       }
 
-      /* --- Keyframes --- */
-      @keyframes shake {
+      @keyframes rotateBox {
         0% {
-          transform: rotate(0deg);
-        }
-        25% {
-          transform: rotate(5deg);
-        }
-        50% {
-          transform: rotate(0deg);
-        }
-        75% {
-          transform: rotate(-5deg);
+          transform: rotateY(0) rotateX(10deg);
         }
         100% {
-          transform: rotate(0deg);
+          transform: rotateY(360deg) rotateX(10deg);
         }
       }
 
@@ -152,28 +241,54 @@
           opacity: 1;
         }
         50% {
-          opacity: 0.5;
-        }
-      }
-
-      @keyframes popIn {
-        0% {
-          transform: scale(0);
           opacity: 0;
         }
-        100% {
-          transform: scale(1);
-          opacity: 1;
+      }
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(10px);
         }
       }
 
-      @keyframes beat {
-        0%,
-        100% {
-          transform: scale(1);
+      /* Mobile Responsive */
+      @media (max-width: 600px) {
+        .container {
+          width: 150px;
+          height: 150px;
         }
-        50% {
-          transform: scale(1.2);
+        .face {
+          width: 150px;
+          height: 150px;
+        }
+        .front {
+          transform: translateZ(75px);
+        }
+        .back {
+          transform: rotateY(180deg) translateZ(75px);
+        }
+        .right {
+          transform: rotateY(90deg) translateZ(75px);
+        }
+        .left {
+          transform: rotateY(-90deg) translateZ(75px);
+        }
+        .bottom {
+          transform: rotateX(-90deg) translateZ(75px);
+        }
+        .top {
+          transform: rotateX(90deg) translateZ(75px);
+        }
+        .container.open .top {
+          transform: rotateX(90deg) translateZ(75px) rotateX(-120deg);
+        }
+        h1 {
+          font-size: 2.2em;
+        }
+        .slideshow {
+          height: 200px;
         }
       }
     </style>
@@ -181,71 +296,162 @@
   <body>
     <audio id="bgMusic" loop>
       <source
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         type="audio/mp3"
       />
     </audio>
 
-    <div class="gift-container" id="giftBox" onclick="openGift()">
-      <div class="gift-box">🎁</div>
-      <div class="click-hint">Nhấn để mở quà nha em!</div>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container" id="giftBox" onclick="openGift()">
+      <div class="gift">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+      <div class="tap-hint">Nhấn vào hộp quà đi em!</div>
     </div>
 
-    <div class="card-container" id="card">
-      <div class="photo-frame">
+    <div class="content" id="mainContent">
+      <div class="slideshow">
         <img
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop"
-          alt="My Love"
+          src="/images/449323006_3665486810380704_1800683066515112021_n.jpg"
+          class="slide-img active"
+          alt="Memory 1"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=1000"
+          class="slide-img"
+          alt="Memory 2"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1511285560982-1351c4f6170b?q=80&w=1000"
+          class="slide-img"
+          alt="Memory 3"
         />
       </div>
-      <h1>Merry Christmas, Bé Yêu! 🎄</h1>
-      <p>
-        Giáng sinh này, anh không cần ông già Noel tặng quà nữa, vì anh đã có
-        món quà tuyệt vời nhất là <b>Em</b> rồi. <br /><br />
-        Chúc em một mùa giáng sinh ấm áp, luôn xinh đẹp và cười thật nhiều nhé!
-        Yêu em nhiều <span class="heart">❤</span>
-      </p>
+
+      <h1>Merry Christmas! 🎄</h1>
+
+      <div id="typewriter"></div>
     </div>
 
     <script>
-      // Tạo hiệu ứng tuyết rơi
-      function createSnow() {
-        const snow = document.createElement("div");
-        snow.classList.add("snowflake");
-        snow.innerHTML = "❄";
-        snow.style.left = Math.random() * 100 + "vw";
-        snow.style.animationDuration = Math.random() * 3 + 2 + "s";
-        snow.style.opacity = Math.random();
-        snow.style.fontSize = Math.random() * 10 + 10 + "px";
+      // --- CẤU HÌNH LỜI CHÚC TẠI ĐÂY ---
+      const message = `Gửi người con gái anh yêu,<br><br>Giáng sinh này có lẽ anh không thể biến ra tuyết rơi thật, nhưng anh có thể gửi đến em cả một bầu trời sao và tình yêu của anh.<br><br>Cảm ơn em vì đã luôn ở bên cạnh anh. Chúc em một mùa giáng sinh ấm áp, hạnh phúc và luôn cười tươi như thế này nhé.<br><br>Yêu em nhiều! ❤`;
 
-        document.body.appendChild(snow);
+      const speed = 50; // Tốc độ gõ chữ (ms)
 
-        setTimeout(() => {
-          snow.remove();
-        }, 5000);
+      // --- XỬ LÝ JS ---
+      let i = 0;
+      function typeWriter() {
+        if (i < message.length) {
+          const char = message.charAt(i);
+          document.getElementById("typewriter").innerHTML +=
+            char === "<" ? checkTag() : char;
+          if (char !== "<") i++;
+          setTimeout(typeWriter, speed);
+        }
       }
-      setInterval(createSnow, 100);
+
+      // Hàm xử lý thẻ HTML (<br>) khi gõ chữ
+      function checkTag() {
+        let tag = "";
+        while (message.charAt(i) !== ">") {
+          tag += message.charAt(i);
+          i++;
+        }
+        tag += ">";
+        i++;
+        return tag;
+      }
 
       // Xử lý mở quà
       function openGift() {
-        const giftBox = document.getElementById("giftBox");
-        const card = document.getElementById("card");
+        const box = document.getElementById("giftBox");
+        const content = document.getElementById("mainContent");
         const music = document.getElementById("bgMusic");
 
-        // Ẩn hộp quà
-        giftBox.style.display = "none";
+        // 1. Animation mở hộp
+        box.classList.add("open");
 
-        // Hiện thiệp
-        card.style.display = "block";
+        // 2. Phát nhạc
+        music.volume = 0.6;
+        music.play().catch(() => console.log("Cần click để phát nhạc"));
 
-        // Phát nhạc (Cần tương tác người dùng mới phát được trên Chrome)
-        music.volume = 0.5;
-        music.play().catch((error) => {
-          console.log(
-            "Trình duyệt chặn phát nhạc tự động, cần click thêm lần nữa"
-          );
-        });
+        // 3. Hiện nội dung sau 1s
+        setTimeout(() => {
+          content.classList.add("active");
+          // Bắt đầu hiệu ứng gõ chữ
+          typeWriter();
+          // Bắt đầu slideshow
+          startSlideshow();
+        }, 1000);
       }
+
+      // Xử lý Slideshow
+      function startSlideshow() {
+        const slides = document.querySelectorAll(".slide-img");
+        let currentSlide = 0;
+
+        setInterval(() => {
+          slides[currentSlide].classList.remove("active");
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add("active");
+        }, 3000); // Đổi ảnh mỗi 3 giây
+      }
+
+      // --- BACKGROUND CANVAS (TUYẾT & ĐOM ĐÓM) ---
+      const canvas = document.getElementById("canvas-bg");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 3;
+          this.speedX = Math.random() * 1 - 0.5;
+          this.speedY = Math.random() * 1 + 0.5;
+          this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`;
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+        }
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      for (let j = 0; j < 100; j++) particles.push(new Particle());
+
+      function animateBg() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateBg);
+      }
+      animateBg();
+
+      // Resize canvas khi đổi kích thước màn hình
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
     </script>
   </body>
 </html>
