@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi Em - Mùa Giáng Sinh Ấm Áp</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- Cấu hình chung --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at bottom, #1b2735 0%, #090a0f 100%);
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Nunito", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+
+      /* --- Hiệu ứng tuyết rơi --- */
+      .snowflake {
+        position: absolute;
+        top: -10px;
+        color: #fff;
+        animation: fall linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(105vh);
+        }
+      }
+
+      /* --- Hộp quà (Màn hình chính) --- */
+      .gift-container {
+        text-align: center;
+        z-index: 10;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .gift-container:hover {
+        transform: scale(1.1);
+      }
+
+      .gift-box {
+        font-size: 80px;
+        animation: shake 2s infinite;
+      }
+
+      .click-hint {
+        margin-top: 10px;
+        font-size: 18px;
+        opacity: 0.8;
+        animation: blink 1.5s infinite;
+      }
+
+      /* --- Nội dung thiệp (Ẩn lúc đầu) --- */
+      .card-container {
+        display: none;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 90%;
+        width: 400px;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        z-index: 20;
+        position: relative;
+        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      .photo-frame {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        border: 5px solid #e74c3c;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+      }
+
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5rem;
+        color: #e74c3c; /* Màu đỏ giáng sinh */
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ecf0f1;
+      }
+
+      .heart {
+        color: #e74c3c;
+        animation: beat 1s infinite;
+        display: inline-block;
+      }
+
+      /* --- Nút phát nhạc --- */
+      .music-control {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      /* --- Keyframes --- */
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(5deg);
+        }
+        50% {
+          transform: rotate(0deg);
+        }
+        75% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes beat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bgMusic" loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <div class="gift-container" id="giftBox" onclick="openGift()">
+      <div class="gift-box">🎁</div>
+      <div class="click-hint">Nhấn để mở quà nha em!</div>
+    </div>
+
+    <div class="card-container" id="card">
+      <div class="photo-frame">
+        <img
+          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop"
+          alt="My Love"
+        />
+      </div>
+      <h1>Merry Christmas, Bé Yêu! 🎄</h1>
+      <p>
+        Giáng sinh này, anh không cần ông già Noel tặng quà nữa, vì anh đã có
+        món quà tuyệt vời nhất là <b>Em</b> rồi. <br /><br />
+        Chúc em một mùa giáng sinh ấm áp, luôn xinh đẹp và cười thật nhiều nhé!
+        Yêu em nhiều <span class="heart">❤</span>
+      </p>
+    </div>
+
+    <script>
+      // Tạo hiệu ứng tuyết rơi
+      function createSnow() {
+        const snow = document.createElement("div");
+        snow.classList.add("snowflake");
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * 100 + "vw";
+        snow.style.animationDuration = Math.random() * 3 + 2 + "s";
+        snow.style.opacity = Math.random();
+        snow.style.fontSize = Math.random() * 10 + 10 + "px";
+
+        document.body.appendChild(snow);
+
+        setTimeout(() => {
+          snow.remove();
+        }, 5000);
+      }
+      setInterval(createSnow, 100);
+
+      // Xử lý mở quà
+      function openGift() {
+        const giftBox = document.getElementById("giftBox");
+        const card = document.getElementById("card");
+        const music = document.getElementById("bgMusic");
+
+        // Ẩn hộp quà
+        giftBox.style.display = "none";
+
+        // Hiện thiệp
+        card.style.display = "block";
+
+        // Phát nhạc (Cần tương tác người dùng mới phát được trên Chrome)
+        music.volume = 0.5;
+        music.play().catch((error) => {
+          console.log(
+            "Trình duyệt chặn phát nhạc tự động, cần click thêm lần nữa"
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
