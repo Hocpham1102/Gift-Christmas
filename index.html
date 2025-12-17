@@ -159,12 +159,12 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
       width: 90%;
-      max-width: 700px;
+      max-width: 650px;
       max-height: 90vh;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(25px);
-      border-radius: 30px;
-      padding: 40px;
+      border-radius: 25px;
+      padding: 25px;
       border: 2px solid rgba(255, 255, 255, 0.3);
       text-align: center;
       color: white;
@@ -181,7 +181,7 @@
     }
 
     .content::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     .content::-webkit-scrollbar-track {
@@ -211,10 +211,10 @@
 
     .slideshow {
       width: 100%;
-      height: 250px;
-      border-radius: 20px;
+      height: 350px;
+      border-radius: 15px;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       position: relative;
       border: 4px solid rgba(255, 215, 0, 0.6);
       box-shadow:
@@ -240,8 +240,8 @@
 
     h1 {
       font-family: "Dancing Script", cursive;
-      font-size: 3.5em;
-      margin: 0 0 20px 0;
+      font-size: 2.8em;
+      margin: 0 0 12px 0;
       background: linear-gradient(135deg, #ff6b9d, #ffd700, #ff6b9d);
       background-size: 200% 200%;
       -webkit-background-clip: text;
@@ -264,10 +264,10 @@
     }
 
     #typewriter {
-      font-size: 1.2em;
-      line-height: 1.8;
+      font-size: 0.95em;
+      line-height: 1.6;
       text-align: left;
-      margin-top: 15px;
+      margin-top: 8px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       font-weight: 500;
       width: 100%;
@@ -278,12 +278,12 @@
     /* Large Desktop (1920px+) */
     @media (min-width: 1920px) {
       h1 {
-        font-size: 4.5em;
+        font-size: 3.2em;
       }
 
       .content {
-        max-width: 900px;
-        padding: 50px;
+        max-width: 750px;
+        padding: 30px;
       }
 
       .slideshow {
@@ -291,34 +291,39 @@
       }
 
       #typewriter {
-        font-size: 1.4em;
+        font-size: 1.05em;
       }
     }
 
     /* Desktop (1200px - 1919px) */
     @media (min-width: 1200px) and (max-width: 1919px) {
       h1 {
-        font-size: 3.8em;
+        font-size: 2.8em;
       }
 
       .content {
-        max-width: 800px;
+        max-width: 650px;
+        padding: 25px;
       }
 
       .slideshow {
         height: 350px;
+      }
+
+      #typewriter {
+        font-size: 0.95em;
       }
     }
 
     /* Tablet Landscape (992px - 1199px) */
     @media (min-width: 992px) and (max-width: 1199px) {
       h1 {
-        font-size: 3.2em;
+        font-size: 2.5em;
       }
 
       .content {
-        max-width: 700px;
-        padding: 35px;
+        max-width: 600px;
+        padding: 22px;
       }
 
       .slideshow {
@@ -326,11 +331,11 @@
       }
 
       #typewriter {
-        font-size: 1.1em;
+        font-size: 0.92em;
       }
 
       .tap-hint {
-        font-size: 1.2em;
+        font-size: 1.1em;
         bottom: 70px;
       }
     }
@@ -338,12 +343,12 @@
     /* Tablet Portrait (768px - 991px) */
     @media (min-width: 768px) and (max-width: 991px) {
       h1 {
-        font-size: 2.8em;
+        font-size: 2.3em;
       }
 
       .content {
-        max-width: 600px;
-        padding: 30px;
+        max-width: 550px;
+        padding: 20px;
       }
 
       .slideshow {
@@ -351,12 +356,11 @@
       }
 
       #typewriter {
-        font-size: 1.05em;
-        min-height: 100px;
+        font-size: 0.88em;
       }
 
       .tap-hint {
-        font-size: 1.15em;
+        font-size: 1.05em;
         bottom: 65px;
         padding: 10px 20px;
       }
@@ -365,27 +369,26 @@
     /* Mobile Landscape (576px - 767px) */
     @media (min-width: 576px) and (max-width: 767px) {
       h1 {
-        font-size: 2.3em;
+        font-size: 2em;
       }
 
       .content {
         width: 95%;
         max-width: 500px;
-        padding: 25px;
+        padding: 18px;
       }
 
       .slideshow {
-        height: 220px;
+        height: 240px;
       }
 
       #typewriter {
-        font-size: 1em;
-        min-height: 90px;
-        line-height: 1.6;
+        font-size: 0.85em;
+        line-height: 1.5;
       }
 
       .tap-hint {
-        font-size: 1.05em;
+        font-size: 1em;
         bottom: 55px;
         padding: 8px 18px;
       }
@@ -394,32 +397,32 @@
     /* Mobile Portrait (up to 575px) */
     @media (max-width: 575px) {
       h1 {
-        font-size: 2em;
-        margin-bottom: 15px;
+        font-size: 1.8em;
+        margin-bottom: 10px;
       }
 
       .content {
         width: 95%;
-        padding: 20px;
-        border-radius: 20px;
-        max-height: 85vh;
+        padding: 15px;
+        border-radius: 18px;
+        max-height: 88vh;
       }
 
       .slideshow {
-        height: 180px;
-        border-radius: 15px;
-        margin-bottom: 15px;
+        height: 220px;
+        border-radius: 12px;
+        margin-bottom: 12px;
         border: 3px solid rgba(255, 215, 0, 0.6);
       }
 
       #typewriter {
-        font-size: 0.95em;
-        line-height: 1.6;
-        margin-top: 10px;
+        font-size: 0.82em;
+        line-height: 1.5;
+        margin-top: 8px;
       }
 
       .tap-hint {
-        font-size: 1em;
+        font-size: 0.95em;
         bottom: 50px;
         padding: 8px 16px;
         border-radius: 20px;
@@ -442,22 +445,22 @@
     /* Extra Small Mobile (up to 375px) */
     @media (max-width: 375px) {
       h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
       }
 
       .content {
-        padding: 15px;
-        max-height: 85vh;
+        padding: 12px;
+        max-height: 88vh;
       }
 
       .slideshow {
-        height: 150px;
-        margin-bottom: 12px;
+        height: 200px;
+        margin-bottom: 10px;
       }
 
       #typewriter {
-        font-size: 0.88em;
-        line-height: 1.5;
+        font-size: 0.78em;
+        line-height: 1.45;
       }
 
       .tap-hint {
@@ -470,28 +473,28 @@
     /* Landscape Orientation Adjustments */
     @media (max-height: 600px) and (orientation: landscape) {
       .content {
-        padding: 12px;
-        max-height: 88vh;
+        padding: 10px;
+        max-height: 90vh;
       }
 
       .slideshow {
-        height: 120px;
-        margin-bottom: 10px;
-      }
-
-      h1 {
-        font-size: 1.6em;
+        height: 150px;
         margin-bottom: 8px;
       }
 
+      h1 {
+        font-size: 1.5em;
+        margin-bottom: 6px;
+      }
+
       #typewriter {
-        font-size: 0.82em;
-        line-height: 1.4;
+        font-size: 0.75em;
+        line-height: 1.35;
       }
 
       .tap-hint {
         bottom: 30px;
-        font-size: 0.9em;
+        font-size: 0.85em;
       }
     }
 
