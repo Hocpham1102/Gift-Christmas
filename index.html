@@ -190,35 +190,7 @@
       }
     }
 
-    .slideshow {
-      width: 100%;
-      height: 32vh;
-      max-height: 300px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 10px;
-      position: relative;
-      border: 2px solid rgba(255, 215, 0, 0.6);
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(255, 107, 157, 0.3);
-      flex-shrink: 0;
-    }
 
-    .slide-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
-
-    .slide-img.active {
-      opacity: 1;
-    }
 
     h1 {
       font-family: "Dancing Script", cursive;
@@ -266,11 +238,6 @@
         max-width: 750px;
         padding: 20px;
       }
-
-      .slideshow {
-        height: 35vh;
-        max-height: 350px;
-      }
     }
 
     /* Desktop (1200px - 1919px) */
@@ -279,11 +246,6 @@
         max-width: 650px;
         padding: 18px;
       }
-
-      .slideshow {
-        height: 32vh;
-        max-height: 300px;
-      }
     }
 
     /* Tablet Landscape (992px - 1199px) */
@@ -291,11 +253,6 @@
       .content {
         max-width: 600px;
         padding: 15px;
-      }
-
-      .slideshow {
-        height: 30vh;
-        max-height: 280px;
       }
 
       .tap-hint {
@@ -309,11 +266,6 @@
       .content {
         max-width: 550px;
         padding: 14px;
-      }
-
-      .slideshow {
-        height: 28vh;
-        max-height: 250px;
       }
 
       .tap-hint {
@@ -331,11 +283,6 @@
         padding: 12px;
       }
 
-      .slideshow {
-        height: 26vh;
-        max-height: 200px;
-      }
-
       .tap-hint {
         font-size: 0.95em;
         bottom: 45px;
@@ -350,14 +297,6 @@
         padding: 10px;
         border-radius: 15px;
         max-height: 90vh;
-      }
-
-      .slideshow {
-        height: 28vh;
-        max-height: 200px;
-        border-radius: 10px;
-        margin-bottom: 8px;
-        border: 2px solid rgba(255, 215, 0, 0.6);
       }
 
       .tap-hint {
@@ -388,12 +327,6 @@
         max-height: 92vh;
       }
 
-      .slideshow {
-        height: 26vh;
-        max-height: 180px;
-        margin-bottom: 6px;
-      }
-
       .tap-hint {
         font-size: 0.85em;
         bottom: 35px;
@@ -406,12 +339,6 @@
       .content {
         padding: 6px;
         max-height: 94vh;
-      }
-
-      .slideshow {
-        height: 32vh;
-        max-height: 160px;
-        margin-bottom: 5px;
       }
 
       h1 {
@@ -462,13 +389,6 @@
   <div class="tap-hint" id="tapHint">✨ Nhấn vào hộp quà đi em! ✨</div>
 
   <div class="content" id="mainContent">
-    <div class="slideshow">
-      <img src="./images/449323006_3665486810380704_1800683066515112021_n.jpg" class="slide-img active"
-        alt="Memory 1" />
-      <img src="https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=1000" class="slide-img"
-        alt="Memory 2" />
-    </div>
-
     <h1>Merry Christmas! 🎄💝</h1>
 
     <div id="typewriter"></div>
@@ -665,7 +585,6 @@
       setTimeout(() => {
         document.getElementById('mainContent').classList.add('active');
         typeWriter();
-        startSlideshow();
       }, 1000);
     }
 
@@ -692,17 +611,7 @@
       return tag;
     }
 
-    // ========== SLIDESHOW ==========
-    function startSlideshow() {
-      const slides = document.querySelectorAll(".slide-img");
-      let currentSlide = 0;
 
-      setInterval(() => {
-        slides[currentSlide].classList.remove("active");
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add("active");
-      }, 3500);
-    }
 
     // ========== ENHANCED PARTICLE SYSTEM ==========
     const canvas = document.getElementById("canvas-bg");
