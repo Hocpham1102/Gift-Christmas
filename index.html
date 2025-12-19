@@ -370,6 +370,363 @@
         -webkit-overflow-scrolling: touch;
       }
     }
+
+    /* ========== SETTINGS BUTTON ========== */
+    .settings-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .settings-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    }
+
+    .settings-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Settings Modal */
+    .settings-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .settings-modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .settings-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+    }
+
+    .settings-header h2 {
+      font-family: "Quicksand", sans-serif;
+      font-size: 1.5em;
+      color: #667eea;
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: #999;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #ff6b9d;
+      transform: rotate(90deg);
+    }
+
+    .upload-section {
+      margin-bottom: 20px;
+    }
+
+    .upload-section h3 {
+      font-family: "Quicksand", sans-serif;
+      font-size: 1.1em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .upload-area {
+      border: 2px dashed #667eea;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      background: rgba(102, 126, 234, 0.05);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-area:hover {
+      background: rgba(102, 126, 234, 0.1);
+      border-color: #ff6b9d;
+    }
+
+    .upload-area p {
+      margin: 10px 0;
+      color: #666;
+      font-size: 0.95em;
+    }
+
+    .upload-icon {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    .image-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .preview-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-img {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: rgba(255, 107, 157, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      line-height: 1;
+      transition: all 0.3s ease;
+    }
+
+    .remove-img:hover {
+      background: #ff6b9d;
+      transform: scale(1.1);
+    }
+
+    /* Floating Images Background */
+    .floating-image {
+      position: fixed;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      border-radius: 20px;
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 107, 157, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      filter: brightness(1.05) saturate(1.1);
+    }
+
+    .floating-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    /* Share Button */
+    .share-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: "Quicksand", sans-serif;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .share-btn:active {
+      transform: translateY(0);
+    }
+
+    .share-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Copy Notification */
+    .copy-notification {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(102, 126, 234, 0.95);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-family: "Quicksand", sans-serif;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      z-index: 300;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .copy-notification.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .share-info {
+      background: rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .share-info strong {
+      color: #667eea;
+    }
+
+    @media (max-width: 575px) {
+      .settings-btn {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+      }
+
+      .settings-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .settings-content {
+        padding: 20px;
+        width: 95%;
+      }
+
+      .settings-header h2 {
+        font-size: 1.2em;
+      }
+
+      .upload-area {
+        padding: 20px;
+      }
+
+      .upload-icon {
+        font-size: 2.5em;
+      }
+    }
   </style>
 </head>
 
@@ -387,6 +744,53 @@
   <canvas id="three-canvas"></canvas>
 
   <div class="tap-hint" id="tapHint">✨ Nhấn vào hộp quà đi em! ✨</div>
+
+  <!-- Settings Button -->
+  <div class="settings-btn" id="settingsBtn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" />
+    </svg>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="settings-modal" id="settingsModal">
+    <div class="settings-content">
+      <div class="settings-header">
+        <h2>⚙️ Cài Đặt</h2>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+
+      <div class="upload-section">
+        <h3>📸 Thêm Hình Ảnh</h3>
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">🖼️</div>
+          <p><strong>Nhấn để chọn hình ảnh</strong></p>
+          <p>hoặc kéo thả file vào đây</p>
+          <p style="font-size: 0.85em; color: #999;">Hỗ trợ: JPG, PNG, GIF</p>
+        </div>
+        <input type="file" id="imageInput" accept="image/*" multiple />
+        <div class="image-preview" id="imagePreview"></div>
+
+        <button class="share-btn" id="shareBtn" disabled>
+          🔗 Tạo Link Chia Sẻ
+        </button>
+
+        <div class="share-info">
+          <strong>💡 Hướng dẫn:</strong><br>
+          1. Thêm hình ảnh bạn muốn<br>
+          2. Nhấn "Tạo Link Chia Sẻ"<br>
+          3. Gửi link cho người thân yêu<br>
+          4. Khi họ mở link và nhấn vào hộp quà, hình ảnh sẽ bung ra! 🎁
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy Notification -->
+  <div class="copy-notification" id="copyNotification">
+    ✓ Đã sao chép link vào clipboard!
+  </div>
 
   <div class="content" id="mainContent">
     <h1>Merry Christmas! 🎄💝</h1>
@@ -585,6 +989,7 @@
       setTimeout(() => {
         document.getElementById('mainContent').classList.add('active');
         typeWriter();
+        createFloatingImages(); // Trigger floating images
       }, 1000);
     }
 
@@ -611,6 +1016,309 @@
       return tag;
     }
 
+    // ========== SETTINGS MODAL & IMAGE UPLOAD ==========
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeModal = document.getElementById('closeModal');
+    const uploadArea = document.getElementById('uploadArea');
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+
+    let uploadedImages = [];
+
+    // Open modal
+    settingsBtn.addEventListener('click', () => {
+      settingsModal.classList.add('active');
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      settingsModal.classList.remove('active');
+    });
+
+    // Close modal when clicking outside
+    settingsModal.addEventListener('click', (e) => {
+      if (e.target === settingsModal) {
+        settingsModal.classList.remove('active');
+      }
+    });
+
+    // Upload area click
+    uploadArea.addEventListener('click', () => {
+      imageInput.click();
+    });
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.style.background = 'rgba(102, 126, 234, 0.2)';
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.style.background = 'rgba(102, 126, 234, 0.05)';
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.style.background = 'rgba(102, 126, 234, 0.05)';
+      const files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+
+    // File input change
+    imageInput.addEventListener('change', (e) => {
+      handleFiles(e.target.files);
+    });
+
+    // Handle uploaded files
+    function handleFiles(files) {
+      Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const imageData = e.target.result;
+            uploadedImages.push(imageData);
+            displayPreview(imageData, uploadedImages.length - 1);
+            updateShareButton(); // Enable share button
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Display image preview
+    function displayPreview(imageData, index) {
+      const previewItem = document.createElement('div');
+      previewItem.className = 'preview-item';
+      previewItem.innerHTML = `
+        <img src="${imageData}" alt="Preview ${index + 1}">
+        <button class="remove-img" onclick="removeImage(${index})">×</button>
+      `;
+      imagePreview.appendChild(previewItem);
+    }
+
+    // Remove image
+    window.removeImage = function (index) {
+      uploadedImages.splice(index, 1);
+      updatePreview();
+      updateShareButton();
+    };
+
+    // Update preview display
+    function updatePreview() {
+      imagePreview.innerHTML = '';
+      uploadedImages.forEach((imageData, index) => {
+        displayPreview(imageData, index);
+      });
+    }
+
+    // Update share button state
+    function updateShareButton() {
+      const shareBtn = document.getElementById('shareBtn');
+      if (shareBtn) {
+        shareBtn.disabled = uploadedImages.length === 0;
+      }
+    }
+
+    // ========== SHARE LINK FUNCTIONALITY ==========
+    const shareBtn = document.getElementById('shareBtn');
+    const copyNotification = document.getElementById('copyNotification');
+
+    // Generate share link
+    shareBtn.addEventListener('click', () => {
+      if (uploadedImages.length === 0) return;
+
+      // Encode images to URL-safe format
+      const encodedImages = uploadedImages.map(img => {
+        // Remove data URL prefix and encode
+        return img.replace(/^data:image\/[a-z]+;base64,/, '');
+      });
+
+      // Create URL with encoded images
+      const baseUrl = window.location.origin + window.location.pathname;
+      const params = new URLSearchParams();
+      params.set('images', JSON.stringify(encodedImages));
+
+      const shareUrl = `${baseUrl}?${params.toString()}`;
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        // Show notification
+        copyNotification.classList.add('show');
+        setTimeout(() => {
+          copyNotification.classList.remove('show');
+        }, 3000);
+      }).catch(err => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = shareUrl;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          copyNotification.classList.add('show');
+          setTimeout(() => {
+            copyNotification.classList.remove('show');
+          }, 3000);
+        } catch (err) {
+          alert('Không thể sao chép link. Vui lòng thử lại!');
+        }
+        document.body.removeChild(textArea);
+      });
+    });
+
+    // ========== LOAD IMAGES FROM URL ==========
+    function loadImagesFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const imagesParam = urlParams.get('images');
+
+      if (imagesParam) {
+        try {
+          const encodedImages = JSON.parse(imagesParam);
+
+          // Decode and restore images
+          encodedImages.forEach(encodedImg => {
+            // Detect image type (try common formats)
+            const imageTypes = ['jpeg', 'jpg', 'png', 'gif', 'webp'];
+            let imageData = null;
+
+            // Try to decode as different image types
+            for (let type of imageTypes) {
+              try {
+                imageData = `data:image/${type};base64,${encodedImg}`;
+                uploadedImages.push(imageData);
+                break;
+              } catch (e) {
+                continue;
+              }
+            }
+          });
+
+          // Update preview if images were loaded
+          if (uploadedImages.length > 0) {
+            updatePreview();
+            updateShareButton();
+          }
+        } catch (e) {
+          console.error('Error loading images from URL:', e);
+        }
+      }
+    }
+
+    // Load images on page load
+    loadImagesFromUrl();
+
+
+    // ========== FLOATING IMAGES ANIMATION ==========
+    function createFloatingImages() {
+      if (uploadedImages.length === 0) return;
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      // Calculate positions in a circular/orbital pattern around the content
+      const positions = [];
+      const numImages = uploadedImages.length;
+
+      // Create strategic positions around the screen
+      // Top positions
+      positions.push(
+        { x: centerX - 400, y: 100, size: 120 },
+        { x: centerX + 400, y: 100, size: 110 },
+        { x: centerX - 200, y: 80, size: 90 },
+        { x: centerX + 200, y: 80, size: 95 }
+      );
+
+      // Middle-left and middle-right positions
+      positions.push(
+        { x: 100, y: centerY - 150, size: 130 },
+        { x: 100, y: centerY + 150, size: 100 },
+        { x: window.innerWidth - 150, y: centerY - 150, size: 125 },
+        { x: window.innerWidth - 150, y: centerY + 150, size: 105 }
+      );
+
+      // Bottom positions
+      positions.push(
+        { x: centerX - 350, y: window.innerHeight - 120, size: 115 },
+        { x: centerX + 350, y: window.innerHeight - 120, size: 110 },
+        { x: centerX - 150, y: window.innerHeight - 100, size: 85 },
+        { x: centerX + 150, y: window.innerHeight - 100, size: 90 }
+      );
+
+      // Additional scattered positions for more images
+      positions.push(
+        { x: centerX - 500, y: centerY - 100, size: 95 },
+        { x: centerX + 500, y: centerY - 100, size: 100 },
+        { x: centerX - 300, y: centerY + 200, size: 105 },
+        { x: centerX + 300, y: centerY + 200, size: 95 }
+      );
+
+      uploadedImages.forEach((imageData, index) => {
+        // Use modulo to cycle through positions if more images than positions
+        const posIndex = index % positions.length;
+        const pos = positions[posIndex];
+
+        // Create image element
+        const img = document.createElement('img');
+        img.src = imageData;
+        img.className = 'floating-image';
+
+        // Set size with some variation
+        const sizeVariation = (Math.random() - 0.5) * 20;
+        const finalSize = pos.size + sizeVariation;
+        img.style.width = finalSize + 'px';
+        img.style.height = finalSize + 'px';
+        img.style.objectFit = 'cover';
+
+        // Start from center
+        img.style.left = centerX + 'px';
+        img.style.top = centerY + 'px';
+
+        document.body.appendChild(img);
+
+        // Calculate final position with some randomness
+        const randomOffsetX = (Math.random() - 0.5) * 100;
+        const randomOffsetY = (Math.random() - 0.5) * 100;
+        const finalX = Math.max(50, Math.min(window.innerWidth - finalSize - 50, pos.x + randomOffsetX));
+        const finalY = Math.max(50, Math.min(window.innerHeight - finalSize - 50, pos.y + randomOffsetY));
+
+        // Burst out animation with GSAP
+        gsap.to(img, {
+          left: finalX,
+          top: finalY,
+          opacity: 0.65,
+          rotation: (Math.random() - 0.5) * 30,
+          scale: 1,
+          duration: 1.2 + Math.random() * 0.5,
+          ease: 'back.out(1.2)',
+          delay: index * 0.08
+        });
+
+        // Continuous floating animation
+        gsap.to(img, {
+          y: '+=25',
+          x: '+=15',
+          rotation: '+=' + ((Math.random() - 0.5) * 20),
+          repeat: -1,
+          yoyo: true,
+          duration: 4 + Math.random() * 2,
+          ease: 'sine.inOut',
+          delay: 1.2 + index * 0.08
+        });
+
+        // Subtle scale pulse
+        gsap.to(img, {
+          scale: 1.05,
+          repeat: -1,
+          yoyo: true,
+          duration: 3 + Math.random() * 2,
+          ease: 'sine.inOut',
+          delay: 1.5 + index * 0.08
+        });
+      });
+    }
 
 
     // ========== ENHANCED PARTICLE SYSTEM ==========
