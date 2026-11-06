@@ -1,0 +1,207 @@
+{
+  "total": 40,
+  "passed": 39,
+  "failed": 1,
+  "results": [
+    {
+      "name": "mobile_landscape_extreme_350h_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 34.0px, bottom: 316.0px in viewport 350px (height: 282.0px)"
+    },
+    {
+      "name": "mobile_landscape_extreme_350h_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "mobile_landscape_extreme_350h_scroll_operational",
+      "passed": true,
+      "detail": "ScrollHeight (294px) > ClientHeight (161px), scrolled to 133px"
+    },
+    {
+      "name": "mobile_landscape_extreme_350h_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 410px vs clientWidth 420px"
+    },
+    {
+      "name": "mobile_landscape_extreme_350h_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "mobile_portrait_extreme_350h_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 10.0px, bottom: 340.0px in viewport 350px (height: 330.0px)"
+    },
+    {
+      "name": "mobile_portrait_extreme_350h_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "mobile_portrait_extreme_350h_scroll_operational",
+      "passed": true,
+      "detail": "ScrollHeight (506px) > ClientHeight (135px), scrolled to 371px"
+    },
+    {
+      "name": "mobile_portrait_extreme_350h_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 212px vs clientWidth 222px"
+    },
+    {
+      "name": "mobile_portrait_extreme_350h_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "landscape_short_400h_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 49.2px, bottom: 350.8px in viewport 400px (height: 301.6px)"
+    },
+    {
+      "name": "landscape_short_400h_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "landscape_short_400h_scroll_operational",
+      "passed": true,
+      "detail": "ScrollHeight (294px) > ClientHeight (184px), scrolled to 110px"
+    },
+    {
+      "name": "landscape_short_400h_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 410px vs clientWidth 420px"
+    },
+    {
+      "name": "landscape_short_400h_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "compact_small_320x480_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 65.0px, bottom: 415.0px in viewport 480px (height: 350.0px)"
+    },
+    {
+      "name": "compact_small_320x480_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "compact_small_320x480_scroll_operational",
+      "passed": true,
+      "detail": "ScrollHeight (579px) > ClientHeight (121px), scrolled to 458px"
+    },
+    {
+      "name": "compact_small_320x480_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 264px vs clientWidth 272px"
+    },
+    {
+      "name": "compact_small_320x480_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "standard_mobile_375x667_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 105.9px, bottom: 561.1px in viewport 667px (height: 455.2px)"
+    },
+    {
+      "name": "standard_mobile_375x667_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "standard_mobile_375x667_scroll_operational",
+      "passed": true,
+      "detail": "ScrollHeight (508px) > ClientHeight (293px), scrolled to 215px"
+    },
+    {
+      "name": "standard_mobile_375x667_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 315px vs clientWidth 323px"
+    },
+    {
+      "name": "standard_mobile_375x667_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "desktop_1080p_vertical_fit",
+      "passed": true,
+      "detail": "Content top: 204.3px, bottom: 875.7px in viewport 1080px (height: 671.4px)"
+    },
+    {
+      "name": "desktop_1080p_overflow_style",
+      "passed": true,
+      "detail": "cardBody overflow-y is 'auto', overscroll-behavior is 'contain'"
+    },
+    {
+      "name": "desktop_1080p_scroll_operational",
+      "passed": true,
+      "detail": "Entire text fits without needing scroll (ScrollHeight: 458px <= 458px)"
+    },
+    {
+      "name": "desktop_1080p_no_horizontal_spill",
+      "passed": true,
+      "detail": "Typewriter scrollWidth 680px vs clientWidth 700px"
+    },
+    {
+      "name": "desktop_1080p_replay_button_works",
+      "passed": true,
+      "detail": "Replay button clicked and successfully restarted typewriter"
+    },
+    {
+      "name": "static_no_heart_class",
+      "passed": true,
+      "detail": "Found 0 'class HeartParticle' occurrences (expected 0)"
+    },
+    {
+      "name": "static_no_heart_instantiations",
+      "passed": true,
+      "detail": "Found 0 'new HeartParticle' occurrences (expected 0)"
+    },
+    {
+      "name": "runtime_particles_present",
+      "passed": true,
+      "detail": "Total runtime particles: 175, breakdown: {'SnowParticle': 100, 'SparkleParticle': 50, 'BokehParticle': 25}"
+    },
+    {
+      "name": "runtime_no_heart_particles",
+      "passed": true,
+      "detail": "HeartParticle in runtime: False"
+    },
+    {
+      "name": "runtime_snow_and_bokeh_present",
+      "passed": true,
+      "detail": "SnowParticle: 100, BokehParticle: 25"
+    },
+    {
+      "name": "particle_simulation_numerical_stability",
+      "passed": true,
+      "detail": "Simulated 200 ticks: NaN=0, Inf=0, unbounded=0"
+    },
+    {
+      "name": "particle_animation_frame_rate",
+      "passed": false,
+      "detail": "Measured animation loop performance: 26.8 FPS over 27 frames"
+    },
+    {
+      "name": "music_toggle_dom_attributes",
+      "passed": true,
+      "detail": "Button exists: True, aria-label: 'B\u1eadt/T\u1eaft nh\u1ea1c n\u1ec1n', initial paused: True"
+    },
+    {
+      "name": "music_toggle_rapid_click_resilience",
+      "passed": true,
+      "detail": "30 rapid clicks executed. Console errors caught: 0. Audio paused: True, muted class: True"
+    },
+    {
+      "name": "music_toggle_open_gift_synchronization",
+      "passed": true,
+      "detail": "openGift() successfully cleared .muted class from #musicToggle"
+    }
+  ]
+}

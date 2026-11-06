@@ -3,31 +3,47 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Món Quà Giáng Sinh Đặc Biệt Dành Cho Em ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Merry Christmas - Món Quà Giáng Sinh Ấm Áp Dành Tặng Bạn 🎄✨</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap"
     rel="stylesheet" />
   <style>
+    :root {
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
       height: 100vh;
+      height: 100dvh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+      background: linear-gradient(135deg, #090e1a 0%, #0f1d33 40%, #162a45 75%, #102334 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       font-family: "Quicksand", sans-serif;
       overflow: hidden;
       position: relative;
+    }
+
+    body.modal-active {
+      overflow: hidden !important;
+      touch-action: none;
     }
 
     body::before {
@@ -38,9 +54,9 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(196, 69, 105, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
       z-index: 1;
       pointer-events: none;
     }
@@ -68,6 +84,10 @@
       height: 100%;
       z-index: 5;
       cursor: pointer;
+    }
+
+    #three-canvas.opened {
+      pointer-events: none;
     }
 
     /* Particle Canvas */
@@ -119,22 +139,25 @@
 
     .tap-hint {
       position: absolute;
-      bottom: 80px;
+      bottom: calc(60px + var(--safe-bottom));
       left: 50%;
       transform: translateX(-50%);
       color: white;
       font-weight: 600;
-      font-size: 1.3em;
-      text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
+      font-size: 1.25em;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
       animation: bounce 1.5s infinite alternate;
       white-space: nowrap;
       background: rgba(255, 255, 255, 0.15);
       padding: 12px 25px;
       border-radius: 30px;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 10;
       opacity: 1;
       transition: opacity 0.5s;
+      cursor: pointer;
+      touch-action: manipulation;
     }
 
     .tap-hint.hidden {
@@ -158,56 +181,81 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
-      width: 90%;
-      max-width: 650px;
-      max-height: 90vh;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(25px);
-      border-radius: 20px;
-      padding: 15px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      width: 92%;
+      max-width: 660px;
+      max-height: 88dvh;
+      background: rgba(15, 23, 42, 0.76);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px;
+      padding: 22px 20px 18px 20px;
+      border: 1px solid rgba(251, 191, 36, 0.35);
       text-align: center;
-      color: white;
+      color: #f8fafc;
       opacity: 0;
       z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: center;
       box-shadow:
-        0 0 60px rgba(255, 107, 157, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.1);
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(251, 191, 36, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
       overflow: hidden;
     }
 
     .content.active {
-      animation: contentReveal 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      animation: contentReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes contentReveal {
+      from {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 0;
+      }
       to {
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
       }
     }
 
+    .card-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
+    .festive-badge {
+      display: inline-block;
+      font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
 
     h1 {
       font-family: "Dancing Script", cursive;
-      font-size: clamp(1.5em, 3.5vw, 2.2em);
-      margin: 0 0 8px 0;
-      background: linear-gradient(135deg, #ff6b9d, #ffd700, #ff6b9d);
+      font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+      margin: 0 0 6px 0;
+      background: linear-gradient(135deg, #fbbf24 0%, #fef08a 45%, #f59e0b 80%, #d97706 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: gradientText 3s ease infinite;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+      filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.5));
       flex-shrink: 0;
     }
 
     @keyframes gradientText {
-
       0%,
       100% {
         background-position: 0% 50%;
@@ -218,16 +266,97 @@
       }
     }
 
-    #typewriter {
-      font-size: clamp(0.68em, 1.5vw, 0.82em);
-      line-height: 1.45;
+    .card-body, #cardBody {
+      width: 100%;
+      max-height: 52vh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 6px 14px 10px 6px;
+      margin: 8px 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(251, 191, 36, 0.5) transparent;
+    }
+
+    .card-body::-webkit-scrollbar, #cardBody::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .card-body::-webkit-scrollbar-track, #cardBody::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .card-body::-webkit-scrollbar-thumb, #cardBody::-webkit-scrollbar-thumb {
+      background: rgba(251, 191, 36, 0.4);
+      border-radius: 10px;
+    }
+
+    .card-body::-webkit-scrollbar-thumb:hover, #cardBody::-webkit-scrollbar-thumb:hover {
+      background: rgba(251, 191, 36, 0.7);
+    }
+
+    #typewriter, .typewriter-text {
+      font-size: clamp(0.88rem, 1.8vw, 1.02rem);
+      line-height: 1.68;
       text-align: left;
-      margin-top: 5px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 4px;
+      color: #f1f5f9;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
       font-weight: 500;
       width: 100%;
-      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
       flex-shrink: 1;
+    }
+
+    .card-footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 10px;
+      margin-top: 4px;
+      border-top: 1px solid rgba(251, 191, 36, 0.2);
+      flex-shrink: 0;
+    }
+
+    .replay-btn {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+      font-family: "Quicksand", sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 22px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+
+    .replay-btn:hover {
+      background: rgba(251, 191, 36, 0.28);
+      border-color: #fbbf24;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.25);
+    }
+
+    .festive-seal {
+      font-family: "Dancing Script", cursive;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fbbf24;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
     }
 
     /* ========== RESPONSIVE DESIGN ========== */
@@ -236,7 +365,7 @@
     @media (min-width: 1920px) {
       .content {
         max-width: 750px;
-        padding: 20px;
+        padding: 24px;
       }
     }
 
@@ -244,7 +373,7 @@
     @media (min-width: 1200px) and (max-width: 1919px) {
       .content {
         max-width: 650px;
-        padding: 18px;
+        padding: 22px;
       }
     }
 
@@ -252,12 +381,12 @@
     @media (min-width: 992px) and (max-width: 1199px) {
       .content {
         max-width: 600px;
-        padding: 15px;
+        padding: 18px;
       }
 
       .tap-hint {
         font-size: 1.05em;
-        bottom: 55px;
+        bottom: calc(55px + var(--safe-bottom));
       }
     }
 
@@ -265,12 +394,12 @@
     @media (min-width: 768px) and (max-width: 991px) {
       .content {
         max-width: 550px;
-        padding: 14px;
+        padding: 16px;
       }
 
       .tap-hint {
         font-size: 1em;
-        bottom: 50px;
+        bottom: calc(50px + var(--safe-bottom));
         padding: 8px 16px;
       }
     }
@@ -278,14 +407,14 @@
     /* Mobile Landscape (576px - 767px) */
     @media (min-width: 576px) and (max-width: 767px) {
       .content {
-        width: 95%;
-        max-width: 500px;
-        padding: 12px;
+        width: min(88%, 520px);
+        max-width: 520px;
+        padding: 14px;
       }
 
       .tap-hint {
         font-size: 0.95em;
-        bottom: 45px;
+        bottom: calc(45px + var(--safe-bottom));
         padding: 7px 14px;
       }
     }
@@ -293,17 +422,42 @@
     /* Mobile Portrait (up to 575px) */
     @media (max-width: 575px) {
       .content {
-        width: 95%;
-        padding: 10px;
-        border-radius: 15px;
-        max-height: 90vh;
+        width: min(92%, 420px);
+        max-width: 92%;
+        padding: 16px 14px 12px 14px;
+        border-radius: 20px;
+        max-height: min(78dvh, calc(100dvh - 130px));
+      }
+
+      .card-body, #cardBody {
+        max-height: 48dvh;
+        padding: 4px 10px 8px 4px;
+        margin: 6px 0;
+      }
+
+      /* Compact balanced card layout when floating photos exist */
+      body.has-floating-photos .content {
+        max-height: min(52dvh, 320px);
+        width: min(90%, 390px);
+        padding: 14px 14px 10px 14px;
+      }
+
+      body.has-floating-photos .card-body,
+      body.has-floating-photos #cardBody {
+        max-height: min(24dvh, 140px);
+      }
+
+      .replay-btn {
+        min-height: 44px;
+        padding: 8px 16px;
+        font-size: 0.88rem;
       }
 
       .tap-hint {
-        font-size: 0.9em;
-        bottom: 40px;
-        padding: 6px 12px;
-        border-radius: 15px;
+        font-size: 0.92em;
+        bottom: calc(36px + var(--safe-bottom));
+        padding: 8px 16px;
+        border-radius: 20px;
         white-space: normal;
         text-align: center;
         max-width: 90%;
@@ -323,36 +477,107 @@
     /* Extra Small Mobile (up to 375px) */
     @media (max-width: 375px) {
       .content {
-        padding: 8px;
-        max-height: 92vh;
+        width: min(94%, 350px);
+        padding: 12px 10px 10px 10px;
+        max-height: min(76dvh, calc(100dvh - 130px));
+      }
+
+      .card-body, #cardBody {
+        max-height: 44dvh;
+        padding: 2px 6px 6px 2px;
+      }
+
+      body.has-floating-photos .content {
+        max-height: min(50dvh, 300px);
+        width: min(92%, 340px);
+        padding: 10px 10px 8px 10px;
+      }
+
+      body.has-floating-photos .card-body,
+      body.has-floating-photos #cardBody {
+        max-height: min(22dvh, 125px);
+      }
+
+      .replay-btn {
+        min-height: 44px;
+        padding: 8px 14px;
+        font-size: 0.82rem;
+      }
+
+      .festive-seal {
+        font-size: 1rem;
       }
 
       .tap-hint {
         font-size: 0.85em;
-        bottom: 35px;
-        padding: 5px 10px;
+        bottom: calc(28px + var(--safe-bottom));
+        padding: 6px 12px;
       }
     }
 
-    /* Landscape Orientation Adjustments */
-    @media (max-height: 600px) and (orientation: landscape) {
+    /* Landscape Orientation Adjustments (max-height <= 550px) */
+    @media (max-height: 550px) and (orientation: landscape) {
       .content {
-        padding: 6px;
-        max-height: 94vh;
+        width: min(70%, 450px);
+        max-width: 450px;
+        max-height: calc(100dvh - 20px);
+        padding: 8px 14px 6px 14px;
+        border-radius: 16px;
+      }
+
+      body.has-floating-photos .content {
+        width: min(62%, 390px);
+        max-width: 390px;
+        max-height: min(60dvh, 220px);
+        padding: 6px 12px 5px 12px;
+      }
+
+      body.has-floating-photos .card-body,
+      body.has-floating-photos #cardBody {
+        max-height: min(28dvh, 95px);
       }
 
       h1 {
-        margin-bottom: 4px;
+        font-size: 1.45rem;
+        margin-bottom: 2px;
       }
 
-      #typewriter {
+      .festive-badge {
+        font-size: 0.68rem;
+        padding: 2px 8px;
+        margin-bottom: 2px;
+      }
+
+      .card-body, #cardBody {
+        max-height: 46dvh;
+        padding: 2px 8px 4px 2px;
+        margin: 2px 0;
+      }
+
+      #typewriter, .typewriter-text {
+        font-size: 0.82rem;
         line-height: 1.35;
       }
 
+      .card-footer {
+        padding-top: 6px;
+        margin-top: 2px;
+      }
+
+      .replay-btn {
+        min-height: 44px;
+        padding: 6px 14px;
+        font-size: 0.82rem;
+      }
+
+      .festive-seal {
+        font-size: 0.95rem;
+      }
+
       .tap-hint {
-        bottom: 20px;
-        font-size: 0.8em;
-        padding: 5px 10px;
+        bottom: calc(14px + var(--safe-bottom));
+        font-size: 0.78em;
+        padding: 4px 10px;
       }
     }
 
@@ -374,12 +599,13 @@
     /* ========== SETTINGS BUTTON ========== */
     .settings-btn {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: max(20px, var(--safe-top));
+      right: max(20px, var(--safe-right));
       width: 50px;
       height: 50px;
       background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       display: flex;
@@ -389,12 +615,13 @@
       z-index: 100;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      touch-action: manipulation;
     }
 
     .settings-btn:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: rotate(90deg) scale(1.1);
-      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
     }
 
     .settings-btn svg {
@@ -435,21 +662,24 @@
     }
 
     .settings-content {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 20px;
-      padding: 30px;
-      width: 90%;
+      padding: 26px 22px;
+      width: 92%;
       max-width: 500px;
-      max-height: 80vh;
+      max-height: min(88dvh, 720px);
       overflow-y: auto;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      overscroll-behavior: contain;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
     @keyframes slideUp {
       from {
-        transform: translateY(50px);
+        transform: translateY(40px);
         opacity: 0;
       }
 
@@ -463,9 +693,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+      position: sticky;
+      top: -26px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      margin: -26px -22px 18px -22px;
+      padding: 18px 22px 14px 22px;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.25);
+      z-index: 10;
     }
 
     .settings-header h2 {
@@ -483,16 +719,20 @@
       cursor: pointer;
       line-height: 1;
       padding: 0;
-      width: 30px;
-      height: 30px;
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      min-height: 46px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
+      touch-action: manipulation;
     }
 
     .close-btn:hover {
-      color: #ff6b9d;
+      color: #f59e0b;
       transform: rotate(90deg);
     }
 
@@ -509,124 +749,446 @@
 
     .upload-area {
       border: 2px dashed #667eea;
-      border-radius: 10px;
-      padding: 30px;
+      border-radius: 12px;
+      padding: 24px 20px;
       text-align: center;
       background: rgba(102, 126, 234, 0.05);
       cursor: pointer;
       transition: all 0.3s ease;
+      position: relative;
     }
 
-    .upload-area:hover {
-      background: rgba(102, 126, 234, 0.1);
-      border-color: #ff6b9d;
+    .upload-area * {
+      pointer-events: none;
+    }
+
+    .upload-area:hover,
+    .upload-area.drag-over {
+      background: rgba(102, 126, 234, 0.15);
+      border-color: #fbbf24;
+      transform: scale(1.01);
     }
 
     .upload-area p {
-      margin: 10px 0;
-      color: #666;
+      margin: 6px 0;
+      color: #64748b;
       font-size: 0.95em;
     }
 
     .upload-icon {
-      font-size: 3em;
-      margin-bottom: 10px;
+      font-size: 2.8em;
+      margin-bottom: 6px;
+      display: inline-block;
+      animation: floatIcon 3s ease-in-out infinite;
     }
 
-    #imageInput {
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    #imageInput,
+    #replaceImageInput {
       display: none;
+    }
+
+    .image-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .image-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(102, 126, 234, 0.15);
+      color: #4338ca;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .clear-all-btn {
+      background: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 20px;
+      padding: 6px 14px;
+      min-height: 38px;
+      font-size: 0.84em;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .clear-all-btn:hover {
+      background: rgba(239, 68, 68, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .upload-loading {
+      margin-top: 10px;
+      padding: 9px 14px;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: #b45309;
+      border-radius: 10px;
+      font-size: 0.88em;
+      font-weight: 600;
+      text-align: center;
+      animation: pulse 1.5s infinite alternate;
     }
 
     .image-preview {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 10px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 4px;
     }
 
     .preview-item {
       position: relative;
       aspect-ratio: 1;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+      border: 2px solid rgba(251, 191, 36, 0.7);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .preview-item:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      border-color: #fbbf24;
     }
 
     .preview-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .remove-img {
+    .replace-img {
       position: absolute;
-      top: 5px;
-      right: 5px;
-      background: rgba(255, 107, 157, 0.9);
-      border: none;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(37, 99, 235, 0.95);
+      border: 1.5px solid white;
       border-radius: 50%;
-      width: 25px;
-      height: 25px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
       color: white;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2em;
+      font-size: 0.95em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+      z-index: 2;
+      touch-action: manipulation;
+    }
+
+    .replace-img::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+    }
+
+    .replace-img:hover {
+      background: #1d4ed8;
+      transform: scale(1.12);
+    }
+
+    .remove-img {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(239, 68, 68, 0.96);
+      border: 1.5px solid white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15em;
       line-height: 1;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+      z-index: 2;
+      touch-action: manipulation;
+    }
+
+    .remove-img::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
     }
 
     .remove-img:hover {
-      background: #ff6b9d;
-      transform: scale(1.1);
+      background: #dc2626;
+      transform: scale(1.12);
     }
 
-    /* Floating Images Background */
+    .modal-bottom-close-btn {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 16px;
+      margin-top: 14px;
+      background: rgba(100, 116, 139, 0.12);
+      border: 1px solid rgba(100, 116, 139, 0.3);
+      border-radius: 12px;
+      color: #475569;
+      font-family: "Quicksand", sans-serif;
+      font-size: 0.95em;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .modal-bottom-close-btn:hover {
+      background: rgba(100, 116, 139, 0.22);
+      color: #1e293b;
+    }
+
+    /* Floating Images Around Greeting Card */
     .floating-image {
       position: fixed;
-      pointer-events: none;
-      z-index: 3;
+      pointer-events: auto;
+      z-index: 25;
       opacity: 0;
-      border-radius: 20px;
+      border-radius: 16px;
       box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(255, 107, 157, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
-      border: 3px solid rgba(255, 255, 255, 0.6);
-      transition: all 0.3s ease;
-      filter: brightness(1.05) saturate(1.1);
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 22px rgba(251, 191, 36, 0.55),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: filter 0.3s ease, box-shadow 0.3s ease;
+      filter: brightness(1.06) saturate(1.12);
+      will-change: transform, left, top, opacity;
+      touch-action: manipulation;
     }
 
-    .floating-image::before {
-      content: '';
+    .floating-image:hover,
+    .floating-image.enlarged {
+      filter: brightness(1.18) saturate(1.25);
+      box-shadow:
+        0 16px 42px rgba(0, 0, 0, 0.65),
+        0 0 35px rgba(251, 191, 36, 0.9);
+      z-index: 35 !important;
+    }
+
+    .floating-image:active {
+      transform: scale(0.92) !important;
+      transition: transform 0.1s ease;
+    }
+
+    /* Festive Photo Lightbox */
+    .photo-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: max(16px, var(--safe-top)) max(16px, var(--safe-right)) max(16px, var(--safe-bottom)) max(16px, var(--safe-left));
+    }
+
+    .photo-lightbox.active {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .lightbox-overlay {
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg,
-          transparent,
-          rgba(255, 255, 255, 0.1),
-          transparent);
-      transform: rotate(45deg);
-      animation: shimmer 3s infinite;
+      inset: 0;
+      background: rgba(8, 14, 26, 0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    .lightbox-box {
+      position: relative;
+      z-index: 2;
+      max-width: min(92vw, 480px);
+      max-height: min(86dvh, 640px);
+      border-radius: 20px;
+      border: 2px solid rgba(251, 191, 36, 0.7);
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(251, 191, 36, 0.45);
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      animation: lightboxZoom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes lightboxZoom {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-box img {
+      max-width: min(84vw, 440px);
+      max-height: 60dvh;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+      display: block;
+      cursor: pointer;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: white;
+      border: 2.5px solid white;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, background 0.2s ease;
+      z-index: 10;
+      touch-action: manipulation;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.12);
+      background: #dc2626;
+    }
+
+    .lightbox-footer {
+      color: #fbbf24;
+      font-family: "Dancing Script", cursive;
+      font-size: 1.35rem;
+      margin-top: 10px;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+      letter-spacing: 0.5px;
+    }
+
+    .lightbox-bottom-close-btn {
+      min-height: 44px;
+      min-width: 140px;
+      padding: 10px 24px;
+      margin-top: 10px;
+      background: rgba(239, 68, 68, 0.95);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      color: white;
+      font-family: "Quicksand", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .lightbox-bottom-close-btn:hover {
+      background: #dc2626;
+      transform: scale(1.04);
+    }
+
+    @media (max-width: 575px) {
+      .lightbox-box {
+        padding: 12px;
+        max-width: 94vw;
+        max-height: 88dvh;
       }
 
-      100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
+      .lightbox-box img {
+        max-height: 56dvh;
+      }
+
+      .lightbox-close {
+        top: -8px;
+        right: -6px;
+        width: 44px;
+        height: 44px;
+        font-size: 28px;
+      }
+
+      .lightbox-footer {
+        font-size: 1.15rem;
+        margin-top: 8px;
+      }
+
+      .lightbox-bottom-close-btn {
+        min-height: 44px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-height: 520px) {
+      .lightbox-box {
+        max-height: 94dvh;
+        padding: 8px 12px;
+      }
+
+      .lightbox-box img {
+        max-height: 48dvh;
+      }
+
+      .lightbox-footer {
+        font-size: 0.92rem;
+        margin-top: 4px;
+      }
+
+      .lightbox-bottom-close-btn {
+        min-height: 44px;
+        padding: 8px 20px;
+        margin-top: 6px;
+        font-size: 0.85rem;
       }
     }
 
     /* Share Button */
     .share-btn {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
@@ -635,7 +1197,7 @@
       font-size: 1em;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 16px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
       display: flex;
@@ -657,24 +1219,113 @@
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
 
-    /* Copy Notification */
+    /* Share Result Container */
+    .share-result-container {
+      margin-top: 14px;
+      background: rgba(102, 126, 234, 0.08);
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: none;
+    }
+
+    .share-result-container.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .share-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .share-url-input {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 12px;
+      min-height: 42px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.85em;
+      background: #ffffff;
+      color: #334155;
+      outline: none;
+      font-family: monospace;
+    }
+
+    .share-url-input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    }
+
+    .copy-btn-mini {
+      padding: 10px 14px;
+      min-height: 42px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      touch-action: manipulation;
+    }
+
+    .copy-btn-mini:hover {
+      background: #5a67d8;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 575px) {
+      .share-input-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .share-url-input {
+        grid-column: 1 / -1;
+        width: 100%;
+        min-height: 42px;
+      }
+
+      .copy-btn-mini {
+        width: 100%;
+        min-height: 44px;
+        padding: 10px 8px;
+        font-size: 0.85em;
+      }
+    }
+
+    /* Copy Notification Toast */
     .copy-notification {
       position: fixed;
-      bottom: 30px;
+      top: max(20px, var(--safe-top));
       left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: rgba(102, 126, 234, 0.95);
-      color: white;
-      padding: 15px 30px;
+      transform: translateX(-50%) translateY(-100px);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(251, 191, 36, 0.6);
+      color: #fbbf24;
+      padding: 12px 24px;
       border-radius: 50px;
       font-family: "Quicksand", sans-serif;
       font-weight: 600;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      z-index: 300;
+      font-size: 0.9em;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45), 0 0 15px rgba(251, 191, 36, 0.25);
+      z-index: 400;
       opacity: 0;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .copy-notification.show {
@@ -686,7 +1337,7 @@
       background: rgba(102, 126, 234, 0.1);
       border: 1px solid rgba(102, 126, 234, 0.3);
       border-radius: 10px;
-      padding: 15px;
+      padding: 14px;
       margin-top: 15px;
       font-size: 0.9em;
       color: #555;
@@ -697,12 +1348,79 @@
       color: #667eea;
     }
 
-    @media (max-width: 575px) {
+    /* Music Toggle Button */
+    .music-toggle-btn,
+    #musicToggle {
+      position: fixed;
+      top: max(20px, var(--safe-top));
+      left: max(20px, var(--safe-left));
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      min-height: 44px;
+      min-width: 44px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      border-radius: 30px;
+      color: #f8fafc;
+      font-size: 0.9em;
+      font-weight: 600;
+      font-family: "Quicksand", sans-serif;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(251, 191, 36, 0.2);
+      touch-action: manipulation;
+    }
+
+    .music-toggle-btn:hover {
+      background: rgba(30, 41, 59, 0.88);
+      border-color: #fbbf24;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.35);
+    }
+
+    .music-icon {
+      display: inline-block;
+      font-size: 1.1em;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .spin-playing {
+      animation: musicSpin 4s linear infinite;
+    }
+
+    .music-toggle-btn.muted .music-icon {
+      animation-play-state: paused;
+      opacity: 0.4;
+    }
+
+    .music-toggle-btn.muted {
+      opacity: 0.7;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes musicSpin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Mobile & Landscape Symmetrical Controls */
+    @media (max-width: 767px), (max-height: 520px) {
       .settings-btn {
-        width: 45px;
-        height: 45px;
-        top: 15px;
-        right: 15px;
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        min-height: 46px;
+        top: max(14px, var(--safe-top));
+        right: max(14px, var(--safe-right));
       }
 
       .settings-btn svg {
@@ -711,20 +1429,56 @@
       }
 
       .settings-content {
-        padding: 20px;
+        padding: 20px 16px;
         width: 95%;
       }
 
+      .settings-header {
+        top: -20px;
+        margin: -20px -16px 14px -16px;
+        padding: 14px 16px 10px 16px;
+      }
+
       .settings-header h2 {
-        font-size: 1.2em;
+        font-size: 1.25em;
       }
 
       .upload-area {
-        padding: 20px;
+        padding: 18px 14px;
       }
 
       .upload-icon {
-        font-size: 2.5em;
+        font-size: 2.3em;
+      }
+
+      .music-toggle-btn,
+      #musicToggle {
+        top: max(14px, var(--safe-top));
+        left: max(14px, var(--safe-left));
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        min-height: 46px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.82em;
+      }
+
+      .music-label {
+        display: none;
+      }
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -743,7 +1497,13 @@
   <canvas id="canvas-bg"></canvas>
   <canvas id="three-canvas"></canvas>
 
-  <div class="tap-hint" id="tapHint">✨ Nhấn vào hộp quà đi em! ✨</div>
+  <!-- Floating Music Controller -->
+  <button class="music-toggle-btn" id="musicToggle" aria-label="Bật/Tắt nhạc nền" title="Bật/Tắt nhạc nền">
+    <span class="music-icon spin-playing" id="musicIcon">🎵</span>
+    <span class="music-label" id="musicLabel">Nhạc Noel</span>
+  </button>
+
+  <div class="tap-hint" id="tapHint">✨ Chạm vào hộp quà để mở điều bất ngờ bạn nhé! ✨</div>
 
   <!-- Settings Button -->
   <div class="settings-btn" id="settingsBtn">
@@ -762,27 +1522,45 @@
       </div>
 
       <div class="upload-section">
-        <h3>📸 Thêm Hình Ảnh</h3>
+        <h3>📸 Thêm Hình Ảnh Kỷ Niệm</h3>
         <div class="upload-area" id="uploadArea">
           <div class="upload-icon">🖼️</div>
           <p><strong>Nhấn để chọn hình ảnh</strong></p>
           <p>hoặc kéo thả file vào đây</p>
-          <p style="font-size: 0.85em; color: #999;">Hỗ trợ: JPG, PNG, GIF</p>
+          <p style="font-size: 0.85em; color: #94a3b8;">Tự động nén tối ưu: JPG, PNG, GIF, WebP (Tối đa 12 ảnh)</p>
         </div>
+        <div id="uploadLoading" class="upload-loading" style="display: none;">⏳ Đang tải và nén tối ưu hình ảnh...</div>
         <input type="file" id="imageInput" accept="image/*" multiple />
+        <input type="file" id="replaceImageInput" accept="image/*" style="display: none;" />
+        <div class="image-badge-row">
+          <div id="imageCountBadge" class="image-badge" style="display: none;"></div>
+          <button type="button" id="clearAllImagesBtn" class="clear-all-btn" style="display: none;" title="Xóa toàn bộ ảnh đã thêm">🗑️ Xóa tất cả</button>
+        </div>
         <div class="image-preview" id="imagePreview"></div>
 
         <button class="share-btn" id="shareBtn" disabled>
           🔗 Tạo Link Chia Sẻ
         </button>
 
+        <div class="share-result-container" id="shareResultContainer">
+          <div style="font-size: 0.88em; font-weight: 600; color: #4338ca; margin-bottom: 4px;">
+            🎉 Link chia sẻ của bạn đã sẵn sàng:
+          </div>
+          <div class="share-input-row">
+            <input type="text" class="share-url-input" id="shareUrlInput" readonly placeholder="Link chia sẻ sẽ hiển thị ở đây..." />
+            <button type="button" class="copy-btn-mini" id="copyShareUrlBtn">📋 Sao chép</button>
+            <button type="button" class="copy-btn-mini" id="testShareUrlBtn" style="background: #10b981;">🚀 Mở thử</button>
+          </div>
+        </div>
+
         <div class="share-info">
           <strong>💡 Hướng dẫn:</strong><br>
-          1. Thêm hình ảnh bạn muốn<br>
+          1. Thêm hình ảnh bạn muốn (ảnh được tự động tối ưu sắc nét)<br>
           2. Nhấn "Tạo Link Chia Sẻ"<br>
-          3. Gửi link cho người thân yêu<br>
-          4. Khi họ mở link và nhấn vào hộp quà, hình ảnh sẽ bung ra! 🎁
+          3. Gửi link cho bạn bè và người thân<br>
+          4. Khi họ mở link và nhấn vào hộp quà, hình ảnh sẽ bung toả lung linh! 🎁
         </div>
+        <button type="button" class="modal-bottom-close-btn" id="bottomCloseModal">✕ Đóng cài đặt</button>
       </div>
     </div>
   </div>
@@ -792,10 +1570,31 @@
     ✓ Đã sao chép link vào clipboard!
   </div>
 
-  <div class="content" id="mainContent">
-    <h1>Merry Christmas! 🎄💝</h1>
+  <!-- Festive Photo Lightbox -->
+  <div class="photo-lightbox" id="photoLightbox">
+    <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    <div class="lightbox-box">
+      <button class="lightbox-close" id="closeLightbox" title="Đóng">&times;</button>
+      <img id="lightboxImg" src="" alt="Ảnh kỷ niệm Giáng Sinh" title="Nhấn để đóng ảnh" />
+      <div class="lightbox-footer">✨ Kỷ niệm Giáng sinh ấm áp ✨</div>
+      <button type="button" class="lightbox-bottom-close-btn" id="bottomCloseLightbox">✕ Đóng ảnh</button>
+    </div>
+  </div>
 
-    <div id="typewriter"></div>
+  <div class="content festive-card" id="mainContent">
+    <div class="card-header">
+      <div class="festive-badge">🎄 MÙA GIÁNG SINH & NĂM MỚI ❄️</div>
+      <h1>Merry Christmas! 🎄✨🎁</h1>
+    </div>
+    <div class="card-body" id="cardBody">
+      <div id="typewriter" class="typewriter-text"></div>
+    </div>
+    <div class="card-footer">
+      <button class="replay-btn" id="replayBtn" title="Đọc lại lời chúc">
+        <span>✨ Đọc lại lời chúc</span>
+      </button>
+      <div class="festive-seal">Warmest Wishes 🎄✨</div>
+    </div>
   </div>
 
   <!-- Three.js Library -->
@@ -804,12 +1603,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <script>
-    const message = `Gửi người con gái anh yêu nhất,<br><br>Giáng sinh này, dù anh không thể biến ra tuyết rơi thật hay thắp sáng cả bầu trời sao, nhưng anh muốn gửi đến em điều quý giá nhất - trái tim và tình yêu trọn vẹn của anh.<br><br>Em biết không, mỗi khoảnh khắc bên em đều là món quà tuyệt vời nhất mà cuộc đời trao tặng anh. Nụ cười của em là ánh sáng ấm áp nhất trong những ngày đông lạnh giá. Tiếng cười của em là giai điệu ngọt ngào nhất mà anh từng được nghe.<br><br>Cảm ơn em vì đã luôn ở bên anh, vì đã tin tưởng và yêu thương anh. Anh hứa sẽ luôn là chỗ dựa vững chắc, là bờ vai ấm áp để em có thể tựa vào mỗi khi mệt mỏi.<br><br>Chúc em một mùa Giáng sinh tràn ngập niềm vui, hạnh phúc và yêu thương. Mong rằng nụ cười luôn nở trên môi em, và trái tim em luôn tràn đầy ấm áp.<br><br>Anh yêu em vô cùng, từ hôm qua, hôm nay và mãi mãi về sau! 💖🎄✨`;
-    const speed = 50;
+    const message = `Gửi người bạn thân mến của tôi,<br><br>Mùa Giáng sinh và những ngày cuối năm rộn ràng lại về mang theo những cơn gió lạnh, nhưng tôi tin rằng sự ấm áp từ những người bạn chân thành sẽ luôn sưởi ấm tâm hồn chúng ta.<br><br>Cảm ơn bạn vì đã luôn là một người bạn tuyệt vời trong suốt năm qua. Cảm ơn những câu chuyện sẻ chia, những nụ cười rạng rỡ và cả những khoảnh khắc chúng ta cùng nhau vượt qua áp lực bộn bề.<br><br>Chúc bạn và gia đình có một mùa Giáng sinh an lành, đầm ấm và ngập tràn niềm vui. Mong rằng mọi ước mơ, dự định trong năm mới của bạn đều thành công rực rỡ và thuận buồm xuôi gió.<br><br>Merry Christmas & Happy New Year! Chúc cho tình bạn của chúng ta luôn bền chặt và tràn đầy niềm vui! 🎄🎁✨`;
+    const speed = 35;
 
     // ========== THREE.JS 3D GIFT BOX ==========
-    let scene, camera, renderer, giftBox, ribbonV, ribbonH, bow;
+    let scene, camera, renderer, giftGroup, boxBase, boxLid, giftBox, ribbonV, ribbonH, bow;
+    let innerLight, innerCore, giftSurprise, starMaterial, gemMaterial, haloMaterial;
+    let boxMaterial, lidMaterial, ribbonMaterial, lidRibbonMaterial, innerLiningMat;
+    let burstGroup, burstParticles = [];
     let isOpened = false;
+    let targetRotationX = 0, targetRotationY = 0;
+    let currentTiltX = 0, currentTiltY = 0;
 
     function initThreeJS() {
       const canvas = document.getElementById('three-canvas');
@@ -818,14 +1622,16 @@
       camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
       // Responsive camera positioning
-      if (window.innerWidth <= 375) {
+      if (window.innerHeight <= 520 && window.innerWidth > window.innerHeight) {
+        // Mobile landscape
+        camera.position.set(0, 1.4, 7.8);
+      } else if (window.innerWidth <= 375) {
         // Extra small mobile
         camera.position.set(0, 2, 10);
       } else if (window.innerWidth <= 575) {
         // Mobile portrait
         camera.position.set(0, 2, 9);
       } else if (window.innerWidth <= 767) {
-        // Mobile landscape
         camera.position.set(0, 2, 8.5);
       } else if (window.innerWidth <= 991) {
         // Tablet portrait
@@ -846,73 +1652,265 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       // Lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
       scene.add(ambientLight);
 
-      const pointLight1 = new THREE.PointLight(0xffd700, 1, 100);
+      const pointLight1 = new THREE.PointLight(0xffd700, 1.2, 100);
       pointLight1.position.set(5, 5, 5);
       pointLight1.castShadow = true;
       scene.add(pointLight1);
 
-      const pointLight2 = new THREE.PointLight(0xff6b9d, 0.8, 100);
+      const pointLight2 = new THREE.PointLight(0xffd700, 0.8, 100);
       pointLight2.position.set(-5, 3, -5);
       scene.add(pointLight2);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
       directionalLight.position.set(0, 10, 5);
       directionalLight.castShadow = true;
       scene.add(directionalLight);
 
-      // Gift Box
-      const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
-      const boxMaterial = new THREE.MeshStandardMaterial({
-        color: 0xd63447,
+      // Master Gift Group (keeps elements synchronized during floating & rotation)
+      giftGroup = new THREE.Group();
+      scene.add(giftGroup);
+
+      // Materials with transparent: true for silky smooth opacity dissolves
+      boxMaterial = new THREE.MeshStandardMaterial({
+        color: 0xd62839,
         metalness: 0.3,
-        roughness: 0.4
+        roughness: 0.32,
+        emissive: 0x30050b,
+        emissiveIntensity: 0.25,
+        transparent: true,
+        opacity: 1
       });
+
+      lidMaterial = boxMaterial.clone();
+
+      ribbonMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 0.88,
+        roughness: 0.18,
+        emissive: 0xb8860b,
+        emissiveIntensity: 0.3,
+        transparent: true,
+        opacity: 1
+      });
+
+      lidRibbonMaterial = ribbonMaterial.clone();
+
+      innerLiningMat = new THREE.MeshStandardMaterial({
+        color: 0x48000c,
+        roughness: 0.85,
+        metalness: 0.1,
+        transparent: true,
+        opacity: 1
+      });
+
+      // ----- BOX BASE GROUP -----
+      boxBase = new THREE.Group();
+      giftGroup.add(boxBase);
+
+      // Main box body
+      const boxGeometry = new THREE.BoxGeometry(2.0, 1.5, 2.0);
       giftBox = new THREE.Mesh(boxGeometry, boxMaterial);
+      giftBox.position.y = -0.15;
       giftBox.castShadow = true;
       giftBox.receiveShadow = true;
-      scene.add(giftBox);
+      boxBase.add(giftBox);
 
-      // Vertical Ribbon
-      const ribbonVGeometry = new THREE.BoxGeometry(0.3, 2.1, 2.1);
-      const ribbonMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 0.7,
-        roughness: 0.2,
-        emissive: 0xffd700,
-        emissiveIntensity: 0.2
-      });
+      // Base Vertical Ribbon (along Z)
+      const ribbonVGeometry = new THREE.BoxGeometry(0.36, 1.52, 2.03);
       ribbonV = new THREE.Mesh(ribbonVGeometry, ribbonMaterial);
-      scene.add(ribbonV);
+      ribbonV.position.y = -0.15;
+      ribbonV.castShadow = true;
+      boxBase.add(ribbonV);
 
-      // Horizontal Ribbon
-      const ribbonHGeometry = new THREE.BoxGeometry(2.1, 0.3, 2.1);
+      // Base Horizontal Ribbon (along X)
+      const ribbonHGeometry = new THREE.BoxGeometry(2.03, 1.52, 0.36);
       ribbonH = new THREE.Mesh(ribbonHGeometry, ribbonMaterial);
-      scene.add(ribbonH);
+      ribbonH.position.y = -0.15;
+      ribbonH.castShadow = true;
+      boxBase.add(ribbonH);
 
-      // Bow on top
-      const bowGroup = new THREE.Group();
+      // Base Gold Rims (top rim and bottom base trim)
+      const baseRim = new THREE.Mesh(new THREE.BoxGeometry(2.04, 0.04, 2.04), ribbonMaterial);
+      baseRim.position.y = 0.6;
+      boxBase.add(baseRim);
 
-      const bowGeometry = new THREE.SphereGeometry(0.3, 32, 32);
-      const bowCenter = new THREE.Mesh(bowGeometry, ribbonMaterial);
-      bowGroup.add(bowCenter);
+      const baseBottomRim = new THREE.Mesh(new THREE.BoxGeometry(2.04, 0.04, 2.04), ribbonMaterial);
+      baseBottomRim.position.y = -0.88;
+      boxBase.add(baseBottomRim);
 
-      const loopGeometry = new THREE.TorusGeometry(0.25, 0.1, 16, 100);
-      const bowLoop1 = new THREE.Mesh(loopGeometry, ribbonMaterial);
-      bowLoop1.position.x = -0.3;
-      bowLoop1.rotation.y = Math.PI / 4;
-      bowGroup.add(bowLoop1);
+      // Velvet Interior Cushion
+      const innerLining = new THREE.Mesh(new THREE.BoxGeometry(1.92, 0.05, 1.92), innerLiningMat);
+      innerLining.position.y = 0.58;
+      boxBase.add(innerLining);
 
-      const bowLoop2 = new THREE.Mesh(loopGeometry, ribbonMaterial);
-      bowLoop2.position.x = 0.3;
-      bowLoop2.rotation.y = -Math.PI / 4;
-      bowGroup.add(bowLoop2);
+      // ----- MAGICAL CHRISTMAS SURPRISE (inside the box) -----
+      giftSurprise = new THREE.Group();
+      giftSurprise.position.set(0, 0.62, 0);
+      giftSurprise.scale.set(0.35, 0.35, 0.35);
+      boxBase.add(giftSurprise);
 
-      bowGroup.position.y = 1.2;
-      bow = bowGroup;
-      scene.add(bow);
+      starMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffe270,
+        roughness: 0.15,
+        metalness: 0.92,
+        emissive: 0xf59e0b,
+        emissiveIntensity: 0.75,
+        transparent: true,
+        opacity: 0
+      });
+
+      gemMaterial = new THREE.MeshStandardMaterial({
+        color: 0xff2a4b,
+        roughness: 0.2,
+        metalness: 0.5,
+        emissive: 0xff1035,
+        emissiveIntensity: 0.6,
+        transparent: true,
+        opacity: 0
+      });
+
+      haloMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        roughness: 0.1,
+        metalness: 0.85,
+        emissive: 0xffaa00,
+        emissiveIntensity: 0.75,
+        transparent: true,
+        opacity: 0
+      });
+
+      // Layered 3D Bethlehem Star
+      const starGeo = new THREE.OctahedronGeometry(0.42, 0);
+      const star1 = new THREE.Mesh(starGeo, starMaterial);
+      star1.scale.set(1.0, 1.5, 1.0);
+      giftSurprise.add(star1);
+
+      const star2 = new THREE.Mesh(starGeo, starMaterial);
+      star2.rotation.y = Math.PI / 4;
+      star2.scale.set(1.5, 1.0, 1.0);
+      giftSurprise.add(star2);
+
+      const gemCore = new THREE.Mesh(new THREE.TetrahedronGeometry(0.24, 0), gemMaterial);
+      gemCore.position.y = 0.02;
+      giftSurprise.add(gemCore);
+
+      const halo = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.022, 16, 40), haloMaterial);
+      halo.rotation.x = Math.PI / 3;
+      giftSurprise.add(halo);
+
+      innerLight = new THREE.PointLight(0xffd700, 0, 15);
+      innerLight.position.set(0, 0.15, 0);
+      giftSurprise.add(innerLight);
+
+      innerCore = star1; // Preserve innerCore reference
+
+      // ----- BOX LID GROUP -----
+      boxLid = new THREE.Group();
+      boxLid.position.set(0, 0.6, 0);
+      giftGroup.add(boxLid);
+
+      // Lid Mesh
+      const lidMesh = new THREE.Mesh(new THREE.BoxGeometry(2.14, 0.38, 2.14), lidMaterial);
+      lidMesh.position.y = 0.19;
+      lidMesh.castShadow = true;
+      boxLid.add(lidMesh);
+
+      // Lid Ribbons (Cross)
+      const lidRibbon1 = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.40, 2.16), lidRibbonMaterial);
+      lidRibbon1.position.y = 0.19;
+      boxLid.add(lidRibbon1);
+
+      const lidRibbon2 = new THREE.Mesh(new THREE.BoxGeometry(2.16, 0.40, 0.38), lidRibbonMaterial);
+      lidRibbon2.position.y = 0.19;
+      boxLid.add(lidRibbon2);
+
+      const lidRim = new THREE.Mesh(new THREE.BoxGeometry(2.16, 0.04, 2.16), lidRibbonMaterial);
+      lidRim.position.y = 0.02;
+      boxLid.add(lidRim);
+
+      // 3D Luxury Ribbon Bow on the Lid
+      bow = new THREE.Group();
+      bow.position.set(0, 0.38, 0);
+      boxLid.add(bow);
+
+      // Bow center knot
+      const bowKnotGeo = new THREE.SphereGeometry(0.24, 24, 24);
+      const bowCenter = new THREE.Mesh(bowKnotGeo, lidRibbonMaterial);
+      bowCenter.scale.set(1.15, 0.9, 1.15);
+      bow.add(bowCenter);
+
+      // 4 Main Diagonal Loops
+      const loopGeo = new THREE.TorusGeometry(0.26, 0.08, 16, 36);
+      const loopAngles = [Math.PI / 4, 3 * Math.PI / 4, 5 * Math.PI / 4, 7 * Math.PI / 4];
+      loopAngles.forEach(angle => {
+        const loop = new THREE.Mesh(loopGeo, lidRibbonMaterial);
+        loop.rotation.y = angle;
+        loop.rotation.x = Math.PI / 5;
+        loop.position.set(Math.cos(angle) * 0.22, 0.1, Math.sin(angle) * 0.22);
+        bow.add(loop);
+      });
+
+      // 2 Fluffy inner upright loops
+      const innerLoopGeo = new THREE.TorusGeometry(0.18, 0.06, 16, 28);
+      const loopIn1 = new THREE.Mesh(innerLoopGeo, lidRibbonMaterial);
+      loopIn1.rotation.set(Math.PI / 7, 0, 0);
+      loopIn1.position.set(0, 0.12, 0.08);
+      bow.add(loopIn1);
+
+      const loopIn2 = new THREE.Mesh(innerLoopGeo, lidRibbonMaterial);
+      loopIn2.rotation.set(0, Math.PI / 2, Math.PI / 7);
+      loopIn2.position.set(0.08, 0.12, 0);
+      bow.add(loopIn2);
+
+      // 2 Flowing ribbon streamers draped over the lid
+      const tailGeo = new THREE.BoxGeometry(0.22, 0.03, 0.6);
+      const tail1 = new THREE.Mesh(tailGeo, lidRibbonMaterial);
+      tail1.position.set(0.25, 0.02, 0.4);
+      tail1.rotation.set(-0.35, 0.35, 0.2);
+      bow.add(tail1);
+
+      const tail2 = new THREE.Mesh(tailGeo, lidRibbonMaterial);
+      tail2.position.set(-0.25, 0.02, 0.4);
+      tail2.rotation.set(-0.35, -0.35, -0.2);
+      bow.add(tail2);
+
+      // ----- 3D CELEBRATION BURST PARTICLES GROUP -----
+      burstGroup = new THREE.Group();
+      scene.add(burstGroup);
+
+      const starParticleGeo = new THREE.OctahedronGeometry(0.10, 0);
+      const gemParticleGeo = new THREE.TetrahedronGeometry(0.09, 0);
+      const sparkParticleGeo = new THREE.SphereGeometry(0.06, 8, 8);
+      const crystalParticleGeo = new THREE.IcosahedronGeometry(0.08, 0);
+
+      const burstMats = [
+        new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.9, roughness: 0.1, emissive: 0xffd700, emissiveIntensity: 0.6, transparent: true, opacity: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0xff2a4b, metalness: 0.6, roughness: 0.2, emissive: 0xff2a4b, emissiveIntensity: 0.5, transparent: true, opacity: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0x10b981, metalness: 0.7, roughness: 0.2, emissive: 0x10b981, emissiveIntensity: 0.5, transparent: true, opacity: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.4, roughness: 0.1, emissive: 0xffffff, emissiveIntensity: 0.8, transparent: true, opacity: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.85, roughness: 0.15, emissive: 0xf59e0b, emissiveIntensity: 0.7, transparent: true, opacity: 1 }),
+        new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.8, roughness: 0.15, emissive: 0x0284c7, emissiveIntensity: 0.6, transparent: true, opacity: 1 })
+      ];
+
+      for (let k = 0; k < 56; k++) {
+        const geo = k % 4 === 0 ? starParticleGeo : (k % 4 === 1 ? gemParticleGeo : (k % 4 === 2 ? sparkParticleGeo : crystalParticleGeo));
+        const mat = burstMats[k % burstMats.length].clone();
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.visible = false;
+        burstGroup.add(mesh);
+        burstParticles.push({
+          mesh,
+          active: false,
+          vx: 0, vy: 0, vz: 0,
+          rotX: 0, rotY: 0, rotZ: 0,
+          scale: 1,
+          life: 0,
+          maxLife: 1
+        });
+      }
 
       // Hide loading screen
       document.getElementById('loading').classList.add('hidden');
@@ -921,28 +1919,106 @@
       animate();
     }
 
+    let activeBurstCount = 0;
+
     function animate() {
       requestAnimationFrame(animate);
 
       if (!isOpened) {
-        giftBox.rotation.y += 0.005;
-        ribbonV.rotation.y += 0.005;
-        ribbonH.rotation.y += 0.005;
-        bow.rotation.y += 0.005;
-
-        // Floating effect
         const time = Date.now() * 0.001;
-        giftBox.position.y = Math.sin(time) * 0.2;
-        ribbonV.position.y = Math.sin(time) * 0.2;
-        ribbonH.position.y = Math.sin(time) * 0.2;
-        bow.position.y = 1.2 + Math.sin(time) * 0.2;
+        // Natural continuous 3D rotation
+        giftGroup.rotation.y += 0.005;
+        // Floating effect
+        giftGroup.position.y = Math.sin(time * 1.6) * 0.14;
+        // Damped interactive tilt
+        currentTiltX += (targetRotationX - currentTiltX) * 0.06;
+        currentTiltY += (targetRotationY - currentTiltY) * 0.06;
+        giftGroup.rotation.z = Math.sin(time * 1.1) * 0.02 + currentTiltX * 0.25;
+        giftGroup.rotation.x = Math.cos(time * 0.9) * 0.02 + currentTiltY * 0.25;
+      }
+
+      // Update 3D burst particles only when active
+      if (activeBurstCount > 0) {
+        const dt = 0.016;
+        burstParticles.forEach(p => {
+          if (!p.active) return;
+          p.life += dt;
+          if (p.life >= p.maxLife) {
+            p.active = false;
+            p.mesh.visible = false;
+            activeBurstCount--;
+            return;
+          }
+          p.mesh.position.x += p.vx * dt;
+          p.mesh.position.y += p.vy * dt;
+          p.mesh.position.z += p.vz * dt;
+          p.vy -= 6.0 * dt; // realistic gravity
+          p.vx *= 0.985;
+          p.vz *= 0.985;
+          p.mesh.rotation.x += p.rotX;
+          p.mesh.rotation.y += p.rotY;
+          p.mesh.rotation.z += p.rotZ;
+
+          const progress = p.life / p.maxLife;
+          if (progress > 0.45) {
+            const s = Math.max(0, (1 - progress) / 0.55);
+            p.mesh.scale.set(s, s, s);
+            if (p.mesh.material && p.mesh.material.opacity !== undefined) {
+              p.mesh.material.opacity = s;
+            }
+          }
+        });
       }
 
       renderer.render(scene, camera);
     }
 
-    // Click handler
+    // Interactive pointer movement parallax with damping
+    window.addEventListener('pointermove', (e) => {
+      if (isOpened) return;
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      targetRotationY = x * 0.35;
+      targetRotationX = -y * 0.25;
+    }, { passive: true });
+
+    // Trigger 3D particle fountain
+    function trigger3DBurst() {
+      activeBurstCount = burstParticles.length;
+      burstParticles.forEach((p) => {
+        p.mesh.position.set(
+          (Math.random() - 0.5) * 0.5,
+          0.6 + (Math.random() - 0.5) * 0.2,
+          (Math.random() - 0.5) * 0.5
+        );
+        p.mesh.scale.set(1, 1, 1);
+        if (p.mesh.material) p.mesh.material.opacity = 1;
+        p.mesh.visible = true;
+        p.active = true;
+
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * (Math.PI / 3.2) + 0.15;
+        const speed = Math.random() * 5.5 + 3.8;
+
+        p.vx = Math.sin(phi) * Math.cos(theta) * speed;
+        p.vy = Math.cos(phi) * speed + 2.8;
+        p.vz = Math.sin(phi) * Math.sin(theta) * speed;
+
+        p.rotX = (Math.random() - 0.5) * 0.25;
+        p.rotY = (Math.random() - 0.5) * 0.25;
+        p.rotZ = (Math.random() - 0.5) * 0.25;
+
+        p.life = 0;
+        p.maxLife = Math.random() * 0.8 + 1.2;
+      });
+    }
+
+    // Click handler for gift opening (canvas & hint)
     document.getElementById('three-canvas').addEventListener('click', openGift);
+    const tapHintEl = document.getElementById('tapHint');
+    if (tapHintEl) {
+      tapHintEl.addEventListener('click', openGift);
+    }
 
     function openGift() {
       if (isOpened) return;
@@ -953,44 +2029,184 @@
       const music = document.getElementById('bgMusic');
       music.volume = 0.5;
       music.play().catch(() => console.log('Click to play music'));
+      const toggle = document.getElementById('musicToggle');
+      if (toggle) toggle.classList.remove('muted');
 
-      // GSAP Animation for opening
-      gsap.to(giftBox.position, {
-        y: -5,
-        duration: 1.5,
-        ease: 'power2.in'
+      // Create GSAP Timeline for magnificent opening
+      const tl = gsap.timeline();
+
+      // 1. Anticipation squash & pulse (0.0s - 0.26s)
+      tl.to(giftGroup.scale, {
+        x: 1.12,
+        y: 0.84,
+        z: 1.12,
+        duration: 0.14,
+        ease: 'power2.inOut'
+      })
+      .to(giftGroup.scale, {
+        x: 0.96,
+        y: 1.12,
+        z: 0.96,
+        duration: 0.12,
+        ease: 'back.out(2)'
+      })
+      .to(giftGroup.scale, {
+        x: 1,
+        y: 1,
+        z: 1,
+        duration: 0.14,
+        ease: 'power1.out'
       });
 
-      gsap.to(ribbonV.position, {
-        y: -5,
-        duration: 1.5,
-        ease: 'power2.in'
-      });
+      // Smoothly level position and add slight forward tilt
+      tl.to(giftGroup.position, {
+        y: 0,
+        duration: 0.26,
+        ease: 'power1.out'
+      }, 0);
 
-      gsap.to(ribbonH.position, {
-        y: -5,
-        duration: 1.5,
-        ease: 'power2.in'
-      });
+      tl.to(giftGroup.rotation, {
+        x: 0.16,
+        z: 0,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0);
 
-      gsap.to(bow.position, {
-        y: -5,
-        duration: 1.5,
-        ease: 'power2.in'
-      });
+      // Bow loosens and unties with excitement
+      tl.to(bow.scale, {
+        x: 1.25,
+        y: 1.3,
+        z: 1.25,
+        duration: 0.24,
+        ease: 'back.out(1.8)'
+      }, 0.05);
 
-      gsap.to(giftBox.rotation, {
-        x: Math.PI * 2,
-        duration: 1.5,
-        ease: 'power2.in'
-      });
+      // 2. The Lid pops upward and spins with a celebratory flourish! (0.26s - 1.15s)
+      tl.to(boxLid.position, {
+        y: 5.0,
+        x: 0.6,
+        z: -0.4,
+        duration: 1.05,
+        ease: 'power2.out'
+      }, 0.26);
 
-      // Show content after animation
+      tl.to(boxLid.rotation, {
+        x: -Math.PI * 0.8,
+        y: Math.PI * 2.2,
+        z: 0.45,
+        duration: 1.05,
+        ease: 'power1.out'
+      }, 0.26);
+
+      // Lid dissolves into shimmering stardust at apex
+      tl.to([lidMaterial, lidRibbonMaterial], {
+        opacity: 0,
+        duration: 0.45,
+        ease: 'power2.in'
+      }, 0.72);
+
+      tl.to(boxLid.scale, {
+        x: 1.15,
+        y: 1.15,
+        z: 1.15,
+        duration: 0.45,
+        ease: 'power1.out'
+      }, 0.72);
+
+      // 3. Magical Christmas Surprise emerges from inside the box! (0.26s - 1.2s)
+      tl.to(giftSurprise.position, {
+        y: 1.78,
+        duration: 0.75,
+        ease: 'power2.out'
+      }, 0.28);
+
+      tl.to(giftSurprise.scale, {
+        x: 1.35,
+        y: 1.35,
+        z: 1.35,
+        duration: 0.85,
+        ease: 'back.out(1.5)'
+      }, 0.28);
+
+      tl.to(giftSurprise.rotation, {
+        y: Math.PI * 3,
+        duration: 1.1,
+        ease: 'power1.out'
+      }, 0.28);
+
+      // Surprise star & gems ignite with radiant golden light
+      tl.to([starMaterial, gemMaterial, haloMaterial], {
+        opacity: 1,
+        duration: 0.35,
+        ease: 'power1.out'
+      }, 0.26);
+
+      tl.to(innerLight, {
+        intensity: 8,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0.26);
+
+      // Trigger 3D particles & 2D canvas fireworks burst right as lid releases
+      tl.call(() => {
+        trigger3DBurst();
+        triggerCanvasBurst();
+      }, null, 0.28);
+
+      // 4. Box base stands proud, gently tilts forward to display interior, then dissolves softly into stardust
+      tl.to(boxBase.rotation, {
+        x: 0.22,
+        duration: 0.5,
+        ease: 'power2.out'
+      }, 0.3);
+
+      // Base materials fade out gracefully - NO DROP, NO ABRUPT COLLAPSE!
+      tl.to([boxMaterial, ribbonMaterial, innerLiningMat], {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.inOut'
+      }, 0.85);
+
+      // 5. Star reaches center screen, pulses radiant aura as card unfolds (0.95s)
+      tl.to(giftSurprise.scale, {
+        x: 1.6,
+        y: 1.6,
+        z: 1.6,
+        duration: 0.35,
+        ease: 'power1.out'
+      }, 0.95);
+
+      tl.to([starMaterial, gemMaterial, haloMaterial], {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in'
+      }, 0.95);
+
+      tl.to(innerLight, {
+        intensity: 0,
+        duration: 0.4,
+        ease: 'power2.in'
+      }, 0.95);
+
+      // Clean hide after dissolve
+      tl.call(() => {
+        giftGroup.visible = false;
+      }, null, 1.4);
+
+      // 6. Seamless transition to greeting card & floating images
       setTimeout(() => {
+        const threeCanvas = document.getElementById('three-canvas');
+        if (threeCanvas) {
+          threeCanvas.style.pointerEvents = 'none';
+          threeCanvas.classList.add('opened');
+        }
         document.getElementById('mainContent').classList.add('active');
-        typeWriter();
         createFloatingImages(); // Trigger floating images
-      }, 1000);
+      }, 950);
+
+      setTimeout(() => {
+        typeWriter();
+      }, 1150);
     }
 
     // ========== TYPEWRITER EFFECT ==========
@@ -1007,7 +2223,7 @@
 
     function checkTag() {
       let tag = "";
-      while (message.charAt(i) !== ">") {
+      while (i < message.length && message.charAt(i) !== ">") {
         tag += message.charAt(i);
         i++;
       }
@@ -1016,30 +2232,197 @@
       return tag;
     }
 
+    // Replay Button
+    const replayBtn = document.getElementById('replayBtn');
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => {
+        i = 0;
+        document.getElementById("typewriter").innerHTML = "";
+        typeWriter();
+      });
+    }
+
+    // ========== MUSIC TOGGLE CONTROLLER ==========
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    if (musicToggle && bgMusic) {
+      musicToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+          bgMusic.play().catch((err) => console.log('Music play error:', err));
+          musicToggle.classList.remove('muted');
+        } else {
+          bgMusic.pause();
+          musicToggle.classList.add('muted');
+        }
+      });
+    }
+
+    // ========== FESTIVE PHOTO LIGHTBOX ==========
+    const photoLightbox = document.getElementById('photoLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const lightboxOverlay = document.getElementById('lightboxOverlay');
+
+    function openPhotoLightbox(src) {
+      if (!photoLightbox || !lightboxImg) return;
+      lightboxImg.src = src;
+      photoLightbox.classList.add('active');
+      document.body.classList.add('modal-active');
+    }
+
+    function hidePhotoLightbox() {
+      if (!photoLightbox) return;
+      photoLightbox.classList.remove('active');
+      if (lightboxImg) lightboxImg.src = '';
+      if (!settingsModal || !settingsModal.classList.contains('active')) {
+        document.body.classList.remove('modal-active');
+      }
+    }
+
+    if (closeLightbox) closeLightbox.addEventListener('click', hidePhotoLightbox);
+    const bottomCloseLightbox = document.getElementById('bottomCloseLightbox');
+    if (bottomCloseLightbox) bottomCloseLightbox.addEventListener('click', hidePhotoLightbox);
+    if (lightboxImg) lightboxImg.addEventListener('click', hidePhotoLightbox);
+    if (lightboxOverlay) lightboxOverlay.addEventListener('click', hidePhotoLightbox);
+    if (photoLightbox) {
+      photoLightbox.addEventListener('click', (e) => {
+        if (e.target === photoLightbox) hidePhotoLightbox();
+      });
+    }
+
     // ========== SETTINGS MODAL & IMAGE UPLOAD ==========
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsModal = document.getElementById('settingsModal');
     const closeModal = document.getElementById('closeModal');
     const uploadArea = document.getElementById('uploadArea');
+    const uploadLoading = document.getElementById('uploadLoading');
     const imageInput = document.getElementById('imageInput');
+    const replaceImageInput = document.getElementById('replaceImageInput');
     const imagePreview = document.getElementById('imagePreview');
+    const imageCountBadge = document.getElementById('imageCountBadge');
+    const clearAllImagesBtn = document.getElementById('clearAllImagesBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const shareResultContainer = document.getElementById('shareResultContainer');
+    const shareUrlInput = document.getElementById('shareUrlInput');
+    const copyShareUrlBtn = document.getElementById('copyShareUrlBtn');
+    const testShareUrlBtn = document.getElementById('testShareUrlBtn');
+    const copyNotification = document.getElementById('copyNotification');
 
     let uploadedImages = [];
+    const MAX_IMAGES = 12;
+    let replaceTargetIndex = -1;
 
-    // Open modal
-    settingsBtn.addEventListener('click', () => {
+    // Helper: Save current images to localStorage
+    function saveToLocalStorage() {
+      try {
+        if (uploadedImages.length > 0) {
+          localStorage.setItem('christmas_uploaded_images', JSON.stringify(uploadedImages));
+        } else {
+          localStorage.removeItem('christmas_uploaded_images');
+        }
+      } catch (e) {
+        console.warn('localStorage save note:', e);
+      }
+    }
+
+    // Helper: Compress and resize image using Canvas
+    function compressImage(file, maxDimension = 360, quality = 0.72) {
+      return new Promise((resolve) => {
+        if (file.type === 'image/svg+xml') {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (readerEvent) => {
+          const img = new Image();
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, width);
+            canvas.height = Math.max(1, height);
+            const ctx = canvas.getContext('2d');
+
+            const isTransparent = file.type === 'image/png' || file.type === 'image/webp' || file.type === 'image/gif' || /\.png$/i.test(file.name);
+            if (!isTransparent) {
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillRect(0, 0, width, height);
+            }
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            let outputMime = isTransparent ? 'image/png' : 'image/jpeg';
+            let dataUrl = canvas.toDataURL(outputMime, quality);
+
+            // If transparent PNG output is larger than 55KB, fallback to JPEG with white background for speed & URL safety
+            if (isTransparent && dataUrl.length > 55000) {
+              const bgCanvas = document.createElement('canvas');
+              bgCanvas.width = width;
+              bgCanvas.height = height;
+              const bgCtx = bgCanvas.getContext('2d');
+              bgCtx.fillStyle = '#FFFFFF';
+              bgCtx.fillRect(0, 0, width, height);
+              bgCtx.drawImage(canvas, 0, 0);
+              dataUrl = bgCanvas.toDataURL('image/jpeg', quality);
+            }
+
+            resolve(dataUrl);
+          };
+          img.onerror = () => {
+            resolve(readerEvent.target.result);
+          };
+          img.src = readerEvent.target.result;
+        };
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Modal controllers with body scroll lock
+    function openSettingsModal() {
       settingsModal.classList.add('active');
-    });
+      document.body.classList.add('modal-active');
+    }
 
-    // Close modal
-    closeModal.addEventListener('click', () => {
+    function closeSettingsModal() {
       settingsModal.classList.remove('active');
-    });
+      if (!photoLightbox || !photoLightbox.classList.contains('active')) {
+        document.body.classList.remove('modal-active');
+      }
+    }
 
-    // Close modal when clicking outside
+    settingsBtn.addEventListener('click', openSettingsModal);
+    closeModal.addEventListener('click', closeSettingsModal);
+    const bottomCloseModal = document.getElementById('bottomCloseModal');
+    if (bottomCloseModal) bottomCloseModal.addEventListener('click', closeSettingsModal);
+
     settingsModal.addEventListener('click', (e) => {
       if (e.target === settingsModal) {
-        settingsModal.classList.remove('active');
+        closeSettingsModal();
+      }
+    });
+
+    // Escape key dismisses active modal / lightbox
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hidePhotoLightbox();
+        closeSettingsModal();
       }
     });
 
@@ -1048,61 +2431,190 @@
       imageInput.click();
     });
 
-    // Drag and drop
+    // Drag and drop handlers
     uploadArea.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadArea.style.background = 'rgba(102, 126, 234, 0.2)';
+      uploadArea.classList.add('drag-over');
     });
 
-    uploadArea.addEventListener('dragleave', () => {
-      uploadArea.style.background = 'rgba(102, 126, 234, 0.05)';
+    uploadArea.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
     });
 
     uploadArea.addEventListener('drop', (e) => {
       e.preventDefault();
-      uploadArea.style.background = 'rgba(102, 126, 234, 0.05)';
-      const files = e.dataTransfer.files;
-      handleFiles(files);
+      uploadArea.classList.remove('drag-over');
+      if (e.dataTransfer && e.dataTransfer.files) {
+        handleFiles(e.dataTransfer.files);
+      }
+    });
+
+    // Prevent default drag & drop on window
+    window.addEventListener('dragover', (e) => e.preventDefault());
+    window.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (settingsModal.classList.contains('active') && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFiles(e.dataTransfer.files);
+      }
     });
 
     // File input change
     imageInput.addEventListener('change', (e) => {
-      handleFiles(e.target.files);
+      if (e.target.files) {
+        handleFiles(e.target.files);
+      }
+      imageInput.value = '';
     });
 
-    // Handle uploaded files
-    function handleFiles(files) {
-      Array.from(files).forEach(file => {
-        if (file.type.startsWith('image/')) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const imageData = e.target.result;
-            uploadedImages.push(imageData);
-            displayPreview(imageData, uploadedImages.length - 1);
-            updateShareButton(); // Enable share button
-          };
-          reader.readAsDataURL(file);
+    // Handle replacement file
+    if (replaceImageInput) {
+      replaceImageInput.addEventListener('change', async (e) => {
+        if (e.target.files && e.target.files[0] && replaceTargetIndex >= 0 && replaceTargetIndex < uploadedImages.length) {
+          const file = e.target.files[0];
+          try {
+            if (uploadLoading) uploadLoading.style.display = 'block';
+            const compressed = await compressImage(file);
+            if (compressed && typeof compressed === 'string') {
+              uploadedImages[replaceTargetIndex] = compressed;
+              updatePreview();
+              updateShareButton();
+              saveToLocalStorage();
+              if (document.getElementById('mainContent').classList.contains('active')) {
+                createFloatingImages();
+              }
+            }
+          } catch (err) {
+            console.error('Error replacing image:', err);
+          } finally {
+            if (uploadLoading) uploadLoading.style.display = 'none';
+          }
         }
+        replaceImageInput.value = '';
+        replaceTargetIndex = -1;
       });
     }
 
-    // Display image preview
+    // Handle uploaded files in parallel
+    async function handleFiles(files) {
+      const fileList = Array.from(files).filter(file => {
+        return file.type.startsWith('image/') || /\.(jpe?g|png|gif|webp|bmp|jfif|svg)$/i.test(file.name);
+      });
+
+      if (fileList.length === 0) return;
+
+      const remainingSlots = MAX_IMAGES - uploadedImages.length;
+      if (remainingSlots <= 0) {
+        alert(`Bạn đã đạt giới hạn tối đa ${MAX_IMAGES} hình ảnh.`);
+        return;
+      }
+
+      const filesToProcess = fileList.slice(0, remainingSlots);
+
+      if (uploadLoading) uploadLoading.style.display = 'block';
+      if (uploadArea) uploadArea.style.pointerEvents = 'none';
+
+      try {
+        const compressedList = await Promise.all(
+          filesToProcess.map(file => compressImage(file).catch(err => {
+            console.error('Error processing single image:', err);
+            return null;
+          }))
+        );
+
+        compressedList.forEach(data => {
+          if (data && typeof data === 'string' && uploadedImages.length < MAX_IMAGES) {
+            uploadedImages.push(data);
+          }
+        });
+      } catch (err) {
+        console.error('Error batch processing images:', err);
+      } finally {
+        if (uploadLoading) uploadLoading.style.display = 'none';
+        if (uploadArea) uploadArea.style.pointerEvents = 'auto';
+      }
+
+      updatePreview();
+      updateShareButton();
+      saveToLocalStorage();
+
+      // Immediately render floating images if gift was already opened
+      if (document.getElementById('mainContent').classList.contains('active')) {
+        createFloatingImages();
+      }
+    }
+
+    // Display image preview item with replace & delete buttons
     function displayPreview(imageData, index) {
       const previewItem = document.createElement('div');
       previewItem.className = 'preview-item';
       previewItem.innerHTML = `
-        <img src="${imageData}" alt="Preview ${index + 1}">
-        <button class="remove-img" onclick="removeImage(${index})">×</button>
+        <img src="${imageData}" alt="Ảnh ${index + 1}" loading="lazy">
+        <button type="button" class="replace-img" title="Thay thế ảnh này">🔄</button>
+        <button type="button" class="remove-img" title="Xóa ảnh này">×</button>
       `;
+
+      // Click img to open full-size lightbox
+      const imgEl = previewItem.querySelector('img');
+      if (imgEl) {
+        imgEl.addEventListener('click', () => openPhotoLightbox(imageData));
+      }
+
+      // Replace button
+      const replaceBtn = previewItem.querySelector('.replace-img');
+      if (replaceBtn) {
+        replaceBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          replaceImage(index);
+        });
+      }
+
+      // Remove button
+      const removeBtn = previewItem.querySelector('.remove-img');
+      if (removeBtn) {
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeImage(index);
+        });
+      }
+
       imagePreview.appendChild(previewItem);
     }
 
-    // Remove image
+    // Replace specific image
+    window.replaceImage = function (index) {
+      replaceTargetIndex = index;
+      if (replaceImageInput) {
+        replaceImageInput.value = '';
+        replaceImageInput.click();
+      }
+    };
+
+    // Remove single image
     window.removeImage = function (index) {
       uploadedImages.splice(index, 1);
       updatePreview();
       updateShareButton();
+      saveToLocalStorage();
+      if (document.getElementById('mainContent').classList.contains('active')) {
+        createFloatingImages();
+      }
     };
+
+    // Clear all images
+    if (clearAllImagesBtn) {
+      clearAllImagesBtn.addEventListener('click', () => {
+        if (confirm('Bạn có chắc muốn xóa tất cả ảnh đã thêm?')) {
+          uploadedImages = [];
+          updatePreview();
+          updateShareButton();
+          saveToLocalStorage();
+          if (document.getElementById('mainContent').classList.contains('active')) {
+            createFloatingImages();
+          }
+        }
+      });
+    }
 
     // Update preview display
     function updatePreview() {
@@ -1110,99 +2622,204 @@
       uploadedImages.forEach((imageData, index) => {
         displayPreview(imageData, index);
       });
+
+      if (imageCountBadge) {
+        if (uploadedImages.length > 0) {
+          imageCountBadge.style.display = 'inline-block';
+          imageCountBadge.textContent = `✨ Đã thêm ${uploadedImages.length}/${MAX_IMAGES} ảnh`;
+        } else {
+          imageCountBadge.style.display = 'none';
+        }
+      }
+
+      if (clearAllImagesBtn) {
+        clearAllImagesBtn.style.display = uploadedImages.length > 0 ? 'inline-flex' : 'none';
+      }
+
+      if (document.body) {
+        document.body.classList.toggle('has-floating-photos', uploadedImages.length > 0);
+      }
     }
 
     // Update share button state
     function updateShareButton() {
-      const shareBtn = document.getElementById('shareBtn');
       if (shareBtn) {
         shareBtn.disabled = uploadedImages.length === 0;
+      }
+      if (uploadedImages.length === 0 && shareResultContainer) {
+        shareResultContainer.classList.remove('active');
       }
     }
 
     // ========== SHARE LINK FUNCTIONALITY ==========
-    const shareBtn = document.getElementById('shareBtn');
-    const copyNotification = document.getElementById('copyNotification');
+    function getCleanBaseUrl() {
+      const href = window.location.href;
+      return href.split('#')[0].split('?')[0];
+    }
+
+    function createShareLinkString() {
+      if (uploadedImages.length === 0) return '';
+      const baseUrl = getCleanBaseUrl();
+      const encoded = encodeURIComponent(JSON.stringify(uploadedImages));
+      return `${baseUrl}#images=${encoded}`;
+    }
+
+    function notifyCopied() {
+      if (copyNotification) {
+        copyNotification.classList.add('show');
+        setTimeout(() => {
+          copyNotification.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    function copyTextToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      }
+      return fallbackCopy(text);
+    }
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.warn('Fallback copy failed', err);
+      }
+      document.body.removeChild(textArea);
+      return Promise.resolve();
+    }
 
     // Generate share link
     shareBtn.addEventListener('click', () => {
       if (uploadedImages.length === 0) return;
 
-      // Encode images to URL-safe format
-      const encodedImages = uploadedImages.map(img => {
-        // Remove data URL prefix and encode
-        return img.replace(/^data:image\/[a-z]+;base64,/, '');
-      });
+      const shareUrl = createShareLinkString();
+      if (!shareUrl) return;
 
-      // Create URL with encoded images
-      const baseUrl = window.location.origin + window.location.pathname;
-      const params = new URLSearchParams();
-      params.set('images', JSON.stringify(encodedImages));
+      if (shareResultContainer && shareUrlInput) {
+        shareUrlInput.value = shareUrl;
+        shareResultContainer.classList.add('active');
+        shareUrlInput.select();
+      }
 
-      const shareUrl = `${baseUrl}?${params.toString()}`;
-
-      // Copy to clipboard
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        // Show notification
-        copyNotification.classList.add('show');
-        setTimeout(() => {
-          copyNotification.classList.remove('show');
-        }, 3000);
-      }).catch(err => {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = shareUrl;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-          document.execCommand('copy');
-          copyNotification.classList.add('show');
-          setTimeout(() => {
-            copyNotification.classList.remove('show');
-          }, 3000);
-        } catch (err) {
-          alert('Không thể sao chép link. Vui lòng thử lại!');
-        }
-        document.body.removeChild(textArea);
+      copyTextToClipboard(shareUrl).then(() => {
+        notifyCopied();
       });
     });
 
-    // ========== LOAD IMAGES FROM URL ==========
+    if (copyShareUrlBtn) {
+      copyShareUrlBtn.addEventListener('click', () => {
+        if (shareUrlInput && shareUrlInput.value) {
+          copyTextToClipboard(shareUrlInput.value).then(() => {
+            notifyCopied();
+          });
+        }
+      });
+    }
+
+    if (testShareUrlBtn) {
+      testShareUrlBtn.addEventListener('click', () => {
+        if (shareUrlInput && shareUrlInput.value) {
+          window.open(shareUrlInput.value, '_blank');
+        }
+      });
+    }
+
+    // ========== LOAD IMAGES FROM URL / HASH / STORAGE ==========
     function loadImagesFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const imagesParam = urlParams.get('images');
+      let imagesDataString = null;
 
-      if (imagesParam) {
+      function extractParam(source, paramName) {
+        if (!source) return null;
+        const reg = new RegExp('(?:^|[&?#])' + paramName + '=([^&]*)');
+        const match = source.match(reg);
+        if (match && match[1]) {
+          try {
+            return decodeURIComponent(match[1]);
+          } catch (e) {
+            return match[1];
+          }
+        }
+        return null;
+      }
+
+      // 1. Check URL Hash first (#images=... or #data=...)
+      if (window.location.hash && window.location.hash.length > 1) {
+        const hashContent = window.location.hash.substring(1);
+        imagesDataString = extractParam(hashContent, 'images') || extractParam(hashContent, 'data');
+
+        if (!imagesDataString && hashContent.startsWith('images=')) {
+          try {
+            imagesDataString = decodeURIComponent(hashContent.substring(7));
+          } catch (e) {
+            imagesDataString = hashContent.substring(7);
+          }
+        }
+      }
+
+      // 2. Check URL search query (?images=...)
+      if (!imagesDataString && window.location.search) {
+        const searchContent = window.location.search.substring(1);
+        imagesDataString = extractParam(searchContent, 'images') || extractParam(searchContent, 'data');
+      }
+
+      // 3. Fallback to localStorage if opened locally without hash/query
+      if (!imagesDataString) {
         try {
-          const encodedImages = JSON.parse(imagesParam);
+          const cached = localStorage.getItem('christmas_uploaded_images');
+          if (cached) {
+            imagesDataString = cached;
+          }
+        } catch (e) {}
+      }
 
-          // Decode and restore images
-          encodedImages.forEach(encodedImg => {
-            // Detect image type (try common formats)
-            const imageTypes = ['jpeg', 'jpg', 'png', 'gif', 'webp'];
-            let imageData = null;
+      if (imagesDataString) {
+        try {
+          const parsed = JSON.parse(imagesDataString);
+          if (Array.isArray(parsed)) {
+            uploadedImages = [];
+            parsed.forEach((img) => {
+              if (typeof img === 'string' && img.length > 0) {
+                if (img.startsWith('data:image/')) {
+                  // Full data URL: sanitize base64 body from any space-corruption
+                  const commaIndex = img.indexOf(',');
+                  if (commaIndex !== -1) {
+                    const header = img.substring(0, commaIndex);
+                    const body = img.substring(commaIndex + 1).replace(/\s+/g, '+');
+                    uploadedImages.push(`${header},${body}`);
+                  } else {
+                    uploadedImages.push(img);
+                  }
+                } else {
+                  // Legacy stripped base64: sanitize spaces to + and auto-detect MIME
+                  const clean = img.replace(/\s+/g, '+');
+                  let mime = 'image/jpeg';
+                  if (clean.startsWith('iVBOR')) mime = 'image/png';
+                  else if (clean.startsWith('R0lGO')) mime = 'image/gif';
+                  else if (clean.startsWith('UklGR')) mime = 'image/webp';
+                  else if (clean.startsWith('PHN2')) mime = 'image/svg+xml';
+                  uploadedImages.push(`data:${mime};base64,${clean}`);
+                }
+              }
+            });
 
-            // Try to decode as different image types
-            for (let type of imageTypes) {
-              try {
-                imageData = `data:image/${type};base64,${encodedImg}`;
-                uploadedImages.push(imageData);
-                break;
-              } catch (e) {
-                continue;
+            if (uploadedImages.length > 0) {
+              updatePreview();
+              updateShareButton();
+              if (document.getElementById('mainContent').classList.contains('active')) {
+                createFloatingImages();
               }
             }
-          });
-
-          // Update preview if images were loaded
-          if (uploadedImages.length > 0) {
-            updatePreview();
-            updateShareButton();
           }
         } catch (e) {
-          console.error('Error loading images from URL:', e);
+          console.error('Error loading images from URL/hash:', e);
         }
       }
     }
@@ -1210,116 +2827,254 @@
     // Load images on page load
     loadImagesFromUrl();
 
-
     // ========== FLOATING IMAGES ANIMATION ==========
-    function createFloatingImages() {
-      if (uploadedImages.length === 0) return;
+    function computeSafeFloatingPositions(count, w, h) {
+      const card = document.getElementById('mainContent');
+      const isLandscape = w > h && h <= 560;
+      const isMobile = w < 768 && !isLandscape;
 
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
+      const music = document.getElementById('musicToggle');
+      const mRect = (music && music.offsetWidth > 0) ? music.getBoundingClientRect() : null;
+      const musicBox = {
+        left: mRect ? mRect.left : 14,
+        top: mRect ? mRect.top : 14,
+        right: mRect ? mRect.right : 60,
+        bottom: mRect ? mRect.bottom : 60,
+        width: mRect ? mRect.width : 46,
+        height: mRect ? mRect.height : 46
+      };
 
-      // Calculate positions in a circular/orbital pattern around the content
+      const settings = document.getElementById('settingsBtn');
+      const sRect = (settings && settings.offsetWidth > 0) ? settings.getBoundingClientRect() : null;
+      const settingsBox = {
+        left: sRect ? sRect.left : (w - 60),
+        top: sRect ? sRect.top : 14,
+        right: sRect ? sRect.right : (w - 14),
+        bottom: sRect ? sRect.bottom : 60,
+        width: sRect ? sRect.width : 46,
+        height: sRect ? sRect.height : 46
+      };
+
+      let cardW, cardH;
+      if (isLandscape) {
+        cardW = Math.min(w * 0.62, 390);
+        cardH = Math.min(h * 0.60, 220);
+      } else if (isMobile) {
+        cardW = (w <= 375) ? Math.min(w * 0.92, 340) : Math.min(w * 0.90, 390);
+        cardH = (w <= 375) ? Math.min(h * 0.50, 300) : Math.min(h * 0.52, 320);
+      } else {
+        cardW = Math.min(w * 0.85, 650);
+        cardH = Math.min(h * 0.70, 400);
+      }
+
+      const cardLeft = (w - cardW) / 2;
+      const cardTop = (h - cardH) / 2;
+      const cardBox = {
+        left: cardLeft,
+        top: cardTop,
+        right: cardLeft + cardW,
+        bottom: cardTop + cardH,
+        width: cardW,
+        height: cardH
+      };
+
       const positions = [];
-      const numImages = uploadedImages.length;
 
-      // Create strategic positions around the screen
-      // Top positions
-      positions.push(
-        { x: centerX - 400, y: 100, size: 120 },
-        { x: centerX + 400, y: 100, size: 110 },
-        { x: centerX - 200, y: 80, size: 90 },
-        { x: centerX + 200, y: 80, size: 95 }
-      );
+      if (isLandscape) {
+        const s = Math.min(42, Math.max(36, Math.floor(h * 0.11)));
+        // Left wing
+        positions.push({ x: 14, y: Math.max(musicBox.bottom + 10, 68), size: s, rot: -5 });
+        positions.push({ x: Math.min(cardBox.left - s - 12, 54), y: Math.floor(h * 0.50 - s / 2), size: s, rot: 6 });
+        positions.push({ x: 14, y: Math.min(h - s - 12, Math.floor(h * 0.78)), size: s, rot: -4 });
+        // Right wing
+        positions.push({ x: w - s - 14, y: Math.max(settingsBox.bottom + 10, 68), size: s, rot: 5 });
+        positions.push({ x: Math.max(cardBox.right + 12, w - s - 54), y: Math.floor(h * 0.50 - s / 2), size: s, rot: -6 });
+        positions.push({ x: w - s - 14, y: Math.min(h - s - 12, Math.floor(h * 0.78)), size: s, rot: 4 });
+        // Top shelf
+        positions.push({ x: Math.floor(w * 0.35 - s / 2), y: Math.max(10, Math.floor(cardBox.top - s - 10)), size: s, rot: 3 });
+        positions.push({ x: Math.floor(w * 0.50 - s / 2), y: Math.max(8, Math.floor(cardBox.top - s - 12)), size: s, rot: -2 });
+        positions.push({ x: Math.floor(w * 0.65 - s / 2), y: Math.max(10, Math.floor(cardBox.top - s - 10)), size: s, rot: -3 });
+        // Bottom shelf
+        positions.push({ x: Math.floor(w * 0.35 - s / 2), y: Math.min(h - s - 10, Math.floor(cardBox.bottom + 10)), size: s, rot: -4 });
+        positions.push({ x: Math.floor(w * 0.50 - s / 2), y: Math.min(h - s - 8, Math.floor(cardBox.bottom + 12)), size: s, rot: 3 });
+        positions.push({ x: Math.floor(w * 0.65 - s / 2), y: Math.min(h - s - 10, Math.floor(cardBox.bottom + 10)), size: s, rot: 4 });
+      } else if (isMobile) {
+        const s = (w <= 375) ? 42 : 46;
+        const topRowY = Math.max(musicBox.bottom + 12, 68);
+        const topCenterY = Math.max(12, Math.floor(musicBox.top + 2));
+        const midUpperY = Math.max(topRowY + s + 6, Math.min(Math.floor(cardBox.top - s - 10), topRowY + s + 12));
 
-      // Middle-left and middle-right positions
-      positions.push(
-        { x: 100, y: centerY - 150, size: 130 },
-        { x: 100, y: centerY + 150, size: 100 },
-        { x: window.innerWidth - 150, y: centerY - 150, size: 125 },
-        { x: window.innerWidth - 150, y: centerY + 150, size: 105 }
-      );
+        // Top Zone (5 slots)
+        positions.push({ x: 14, y: topRowY, size: s, rot: -6 });
+        positions.push({ x: w - s - 14, y: topRowY, size: s, rot: 6 });
+        positions.push({ x: Math.floor(w / 2 - s / 2), y: topCenterY, size: s, rot: 2 });
+        positions.push({ x: Math.floor(w * 0.28 - s / 2), y: midUpperY, size: s - 2, rot: -3 });
+        positions.push({ x: Math.floor(w * 0.72 - s / 2), y: midUpperY, size: s - 2, rot: 3 });
 
-      // Bottom positions
-      positions.push(
-        { x: centerX - 350, y: window.innerHeight - 120, size: 115 },
-        { x: centerX + 350, y: window.innerHeight - 120, size: 110 },
-        { x: centerX - 150, y: window.innerHeight - 100, size: 85 },
-        { x: centerX + 150, y: window.innerHeight - 100, size: 90 }
-      );
+        // Bottom Zone (7 slots)
+        const botY1 = Math.floor(cardBox.bottom + 12);
+        const botY2 = Math.min(h - s - 12, botY1 + s + 14);
+        positions.push({ x: 16, y: botY1, size: s, rot: 5 });
+        positions.push({ x: Math.floor(w * 0.38 - s / 2), y: botY1 + 6, size: s, rot: -4 });
+        positions.push({ x: Math.floor(w * 0.62 - s / 2), y: botY1 + 6, size: s, rot: 4 });
+        positions.push({ x: w - s - 16, y: botY1, size: s, rot: -5 });
+        positions.push({ x: Math.floor(w * 0.20 - s / 2), y: botY2, size: s - 2, rot: 3 });
+        positions.push({ x: Math.floor(w * 0.50 - s / 2), y: botY2 - 2, size: s - 2, rot: -3 });
+        positions.push({ x: Math.floor(w * 0.80 - s / 2), y: botY2, size: s - 2, rot: 4 });
+      } else {
+        const baseSize = Math.min(130, Math.max(105, Math.floor(Math.min(w, h) * 0.14)));
+        positions.push(
+          { x: Math.floor(w * 0.10), y: Math.floor(h * 0.16), size: baseSize, rot: -7 },
+          { x: Math.floor(w * 0.90 - baseSize), y: Math.floor(h * 0.16), size: baseSize, rot: 8 },
+          { x: Math.floor(w * 0.08), y: Math.floor(h * 0.50 - baseSize / 2), size: baseSize + 5, rot: -5 },
+          { x: Math.floor(w * 0.92 - (baseSize + 5)), y: Math.floor(h * 0.50 - baseSize / 2), size: baseSize + 5, rot: 6 },
+          { x: Math.floor(w * 0.12), y: Math.floor(h * 0.82 - baseSize), size: baseSize - 5, rot: 7 },
+          { x: Math.floor(w * 0.88 - (baseSize - 5)), y: Math.floor(h * 0.82 - baseSize), size: baseSize - 5, rot: -7 },
+          { x: Math.floor(w * 0.28), y: Math.max(20, Math.floor(cardBox.top - baseSize - 16)), size: baseSize - 15, rot: -4 },
+          { x: Math.floor(w * 0.72 - (baseSize - 15)), y: Math.max(20, Math.floor(cardBox.top - baseSize - 16)), size: baseSize - 15, rot: 5 },
+          { x: Math.max(20, Math.floor(cardBox.left - baseSize - 20)), y: Math.floor(h * 0.35), size: baseSize - 10, rot: -6 },
+          { x: Math.min(w - baseSize, Math.floor(cardBox.right + 20)), y: Math.floor(h * 0.35), size: baseSize - 10, rot: 6 },
+          { x: Math.max(20, Math.floor(cardBox.left - baseSize - 16)), y: Math.floor(h * 0.68), size: baseSize - 5, rot: 5 },
+          { x: Math.min(w - baseSize, Math.floor(cardBox.right + 16)), y: Math.floor(h * 0.68), size: baseSize - 5, rot: -5 }
+        );
+      }
 
-      // Additional scattered positions for more images
-      positions.push(
-        { x: centerX - 500, y: centerY - 100, size: 95 },
-        { x: centerX + 500, y: centerY - 100, size: 100 },
-        { x: centerX - 300, y: centerY + 200, size: 105 },
-        { x: centerX + 300, y: centerY + 200, size: 95 }
-      );
+      const isOverlap = (box1, box2, pad = 6) => {
+        return !(
+          box1.x + box1.w + pad <= box2.left ||
+          box1.x >= box2.right + pad ||
+          box1.y + box1.h + pad <= box2.top ||
+          box1.y >= box2.bottom + pad
+        );
+      };
+
+      const minPad = 8;
+      const resolved = [];
+
+      for (let i = 0; i < count; i++) {
+        const raw = positions[i % positions.length];
+        let s = raw.size;
+        let x = Math.max(minPad, Math.min(w - s - minPad, raw.x));
+        let y = Math.max(minPad, Math.min(h - s - minPad, raw.y));
+        let cur = { x, y, w: s, h: s };
+
+        if (isOverlap(cur, cardBox, 6)) {
+          if (isLandscape) {
+            x = (x < w / 2) ? Math.max(minPad, Math.floor(cardBox.left - s - 12)) : Math.min(w - s - minPad, Math.floor(cardBox.right + 12));
+          } else {
+            y = (y < cardBox.top + cardBox.height / 2) ? Math.max(minPad, Math.floor(cardBox.top - s - 10)) : Math.min(h - s - minPad, Math.floor(cardBox.bottom + 12));
+          }
+          cur = { x, y, w: s, h: s };
+        }
+
+        if (isOverlap(cur, musicBox, 8)) {
+          y = Math.min(h - s - minPad, musicBox.bottom + 14);
+          cur = { x, y, w: s, h: s };
+        }
+
+        if (isOverlap(cur, settingsBox, 8)) {
+          y = Math.min(h - s - minPad, settingsBox.bottom + 14);
+          cur = { x, y, w: s, h: s };
+        }
+
+        if (isOverlap(cur, cardBox, 6)) {
+          if (isLandscape) {
+            x = (x < w / 2) ? Math.max(minPad, Math.floor(cardBox.left - s - 12)) : Math.min(w - s - minPad, Math.floor(cardBox.right + 12));
+          } else {
+            y = Math.min(h - s - minPad, Math.floor(cardBox.bottom + 12));
+          }
+        }
+
+        x = Math.max(minPad, Math.min(w - s - minPad, x));
+        y = Math.max(minPad, Math.min(h - s - minPad, y));
+        resolved.push({ x, y, size: s, rot: raw.rot });
+      }
+      return resolved;
+    }
+
+    function createFloatingImages() {
+      if (document.body) {
+        document.body.classList.toggle('has-floating-photos', uploadedImages.length > 0);
+      }
+
+      if (uploadedImages.length === 0) {
+        document.querySelectorAll('.floating-image').forEach((el) => el.remove());
+        return;
+      }
+
+      // Remove existing floating images if any
+      document.querySelectorAll('.floating-image').forEach((el) => el.remove());
+
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const centerX = w / 2;
+      const centerY = h / 2;
+
+      const safePositions = computeSafeFloatingPositions(uploadedImages.length, w, h);
 
       uploadedImages.forEach((imageData, index) => {
-        // Use modulo to cycle through positions if more images than positions
-        const posIndex = index % positions.length;
-        const pos = positions[posIndex];
-
-        // Create image element
+        const pos = safePositions[index % safePositions.length];
         const img = document.createElement('img');
         img.src = imageData;
         img.className = 'floating-image';
+        img.title = 'Nhấn để xem ảnh kỷ niệm phóng to ✨';
 
-        // Set size with some variation
-        const sizeVariation = (Math.random() - 0.5) * 20;
-        const finalSize = pos.size + sizeVariation;
-        img.style.width = finalSize + 'px';
-        img.style.height = finalSize + 'px';
+        const size = pos.size;
+        img.style.width = size + 'px';
+        img.style.height = size + 'px';
         img.style.objectFit = 'cover';
 
-        // Start from center
-        img.style.left = centerX + 'px';
-        img.style.top = centerY + 'px';
+        // Start burst from center (inside gift box)
+        img.style.left = (centerX - size / 2) + 'px';
+        img.style.top = (centerY - size / 2) + 'px';
+        img.style.transform = `scale(0) rotate(${pos.rot * 2}deg)`;
+        img.style.opacity = '0';
 
         document.body.appendChild(img);
 
-        // Calculate final position with some randomness
-        const randomOffsetX = (Math.random() - 0.5) * 100;
-        const randomOffsetY = (Math.random() - 0.5) * 100;
-        const finalX = Math.max(50, Math.min(window.innerWidth - finalSize - 50, pos.x + randomOffsetX));
-        const finalY = Math.max(50, Math.min(window.innerHeight - finalSize - 50, pos.y + randomOffsetY));
+        const targetX = Math.max(8, Math.min(w - size - 8, pos.x));
+        const targetY = Math.max(8, Math.min(h - size - 8, pos.y));
 
-        // Burst out animation with GSAP
+        // Click to open high-quality festive lightbox
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openPhotoLightbox(imageData);
+        });
+
+        // 1. Initial burst out from gift box
         gsap.to(img, {
-          left: finalX,
-          top: finalY,
-          opacity: 0.65,
-          rotation: (Math.random() - 0.5) * 30,
+          left: targetX,
+          top: targetY,
+          opacity: 0.96,
+          rotation: pos.rot,
           scale: 1,
-          duration: 1.2 + Math.random() * 0.5,
-          ease: 'back.out(1.2)',
-          delay: index * 0.08
+          duration: 0.85 + Math.random() * 0.25,
+          ease: 'power2.out',
+          delay: index * 0.05
         });
 
-        // Continuous floating animation
-        gsap.to(img, {
-          y: '+=25',
-          x: '+=15',
-          rotation: '+=' + ((Math.random() - 0.5) * 20),
+        // 2. Gentle continuous drift (subtle on mobile to preserve perfect clearances)
+        const driftDistanceY = (h <= 550 || w < 768) ? 4 : 8;
+        const driftDistanceX = (h <= 550 || w < 768) ? 3 : 5;
+        const driftTween = gsap.to(img, {
+          y: `+=${driftDistanceY}`,
+          x: `+=${driftDistanceX}`,
+          rotation: '+=' + (index % 2 === 0 ? 3 : -3),
           repeat: -1,
           yoyo: true,
-          duration: 4 + Math.random() * 2,
+          duration: 3.5 + Math.random() * 2,
           ease: 'sine.inOut',
-          delay: 1.2 + index * 0.08
+          delay: 1.1 + index * 0.07
         });
 
-        // Subtle scale pulse
-        gsap.to(img, {
-          scale: 1.05,
-          repeat: -1,
-          yoyo: true,
-          duration: 3 + Math.random() * 2,
-          ease: 'sine.inOut',
-          delay: 1.5 + index * 0.08
+        img.addEventListener('mouseenter', () => {
+          if (driftTween) driftTween.pause();
+        });
+        img.addEventListener('mouseleave', () => {
+          if (driftTween) driftTween.resume();
         });
       });
     }
-
 
     // ========== ENHANCED PARTICLE SYSTEM ==========
     const canvas = document.getElementById("canvas-bg");
@@ -1337,10 +3092,13 @@
         this.speedX = Math.random() * 1 - 0.5;
         this.speedY = Math.random() * 1.5 + 0.5;
         this.opacity = Math.random() * 0.6 + 0.2;
+        this.angle = Math.random() * Math.PI * 2;
+        this.swingSpeed = Math.random() * 0.02 + 0.01;
       }
       update() {
+        this.angle += this.swingSpeed;
         this.y += this.speedY;
-        this.x += this.speedX;
+        this.x += this.speedX + Math.sin(this.angle) * 0.4;
         if (this.y > canvas.height) {
           this.y = -10;
           this.x = Math.random() * canvas.width;
@@ -1389,8 +3147,7 @@
         if (this.y < 0) this.y = canvas.height;
       }
       draw() {
-        ctx.save();
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 4;
         ctx.shadowColor = `rgba(255, 215, 0, ${this.opacity})`;
         ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
         ctx.beginPath();
@@ -1405,56 +3162,112 @@
         ctx.moveTo(this.x, this.y - this.size * 2);
         ctx.lineTo(this.x, this.y + this.size * 2);
         ctx.stroke();
-        ctx.restore();
       }
     }
 
-    class HeartParticle {
+    class BokehParticle {
       constructor() {
         this.x = Math.random() * canvas.width;
-        this.y = canvas.height + 20;
-        this.size = Math.random() * 15 + 10;
-        this.speedY = -(Math.random() * 2 + 1);
-        this.speedX = Math.random() * 1 - 0.5;
-        this.opacity = Math.random() * 0.4 + 0.2;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 7 + 3;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.25 + 0.08;
+        this.pulse = Math.random() * Math.PI * 2;
+        this.pulseSpeed = Math.random() * 0.02 + 0.01;
       }
       update() {
-        this.y += this.speedY;
         this.x += this.speedX;
-        this.rotation += this.rotationSpeed;
-        if (this.y < -50) {
-          this.y = canvas.height + 20;
-          this.x = Math.random() * canvas.width;
-        }
+        this.y += this.speedY;
+        this.pulse += this.pulseSpeed;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
       }
       draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = '#ff6b9d';
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-
+        const currentOpacity = this.opacity * (0.7 + 0.3 * Math.sin(this.pulse));
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = `rgba(251, 191, 36, ${currentOpacity})`;
+        ctx.fillStyle = `rgba(251, 191, 36, ${currentOpacity})`;
         ctx.beginPath();
-        ctx.moveTo(0, this.size / 4);
-        ctx.bezierCurveTo(-this.size / 2, -this.size / 4, -this.size, this.size / 8, 0, this.size);
-        ctx.bezierCurveTo(this.size, this.size / 8, this.size / 2, -this.size / 4, 0, this.size / 4);
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
     }
 
     for (let j = 0; j < 100; j++) particles.push(new SnowParticle());
     for (let j = 0; j < 50; j++) particles.push(new SparkleParticle());
-    for (let j = 0; j < 20; j++) particles.push(new HeartParticle());
+    for (let j = 0; j < 25; j++) particles.push(new BokehParticle());
+
+    // Opening Burst Sparks on 2D Background Canvas
+    const burstSparks = [];
+
+    class BurstSpark {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 9 + 3;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 2.5;
+        this.size = Math.random() * 4 + 2;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.018 + 0.012;
+        this.color = color || '251, 191, 36';
+        this.gravity = 0.16;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += this.gravity;
+        this.vx *= 0.975;
+        this.alpha -= this.decay;
+      }
+      draw() {
+        if (this.alpha <= 0) return;
+        ctx.save();
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = `rgba(${this.color}, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function triggerCanvasBurst() {
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const colors = [
+        '251, 191, 36',  // Warm Gold
+        '255, 215, 0',   // Pure Gold
+        '244, 63, 94',   // Ruby Red
+        '52, 211, 153',  // Emerald Green
+        '255, 255, 255', // Diamond White
+        '56, 189, 248'   // Crystal Ice Blue
+      ];
+      for (let k = 0; k < 80; k++) {
+        burstSparks.push(new BurstSpark(cx, cy, colors[k % colors.length]));
+      }
+    }
 
     function animateBg() {
+      ctx.shadowBlur = 0;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => {
         p.update();
         p.draw();
       });
+      if (burstSparks.length > 0) {
+        for (let sIdx = burstSparks.length - 1; sIdx >= 0; sIdx--) {
+          const s = burstSparks[sIdx];
+          s.update();
+          s.draw();
+          if (s.alpha <= 0) burstSparks.splice(sIdx, 1);
+        }
+      }
       requestAnimationFrame(animateBg);
     }
     animateBg();
@@ -1471,7 +3284,9 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       // Responsive camera positioning on resize
-      if (window.innerWidth <= 375) {
+      if (window.innerHeight <= 520 && window.innerWidth > window.innerHeight) {
+        camera.position.set(0, 1.4, 7.8);
+      } else if (window.innerWidth <= 375) {
         camera.position.set(0, 2, 10);
       } else if (window.innerWidth <= 575) {
         camera.position.set(0, 2, 9);
@@ -1485,14 +3300,24 @@
         camera.position.set(0, 2, 8);
       }
       camera.lookAt(0, 0, 0);
+
+      // Dynamically reposition floating images on resize if greeting card is opened
+      if (document.getElementById('mainContent').classList.contains('active') && uploadedImages.length > 0) {
+        if (window.__floatingResizeTimer) clearTimeout(window.__floatingResizeTimer);
+        window.__floatingResizeTimer = setTimeout(() => {
+          createFloatingImages();
+        }, 150);
+      }
     });
 
     // ========== INITIALIZE ==========
     window.addEventListener('load', () => {
+      if (document.body) {
+        document.body.classList.toggle('has-floating-photos', uploadedImages.length > 0);
+      }
       initThreeJS();
     });
   </script>
 </body>
 
 </html>
-```

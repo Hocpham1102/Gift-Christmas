@@ -1,0 +1,504 @@
+{
+  "timestamp": "2026-11-06T11:21:51Z",
+  "total": 55,
+  "passed": 55,
+  "failed": 0,
+  "pass_percentage": 100.0,
+  "results": [
+    {
+      "test_id": "T1.F1.01",
+      "tier": 1,
+      "feature": "F1",
+      "name": "Title has no forbidden romance vocabulary",
+      "passed": true,
+      "detail": "Title has zero forbidden romance terms: 'Merry Christmas - Món Quà Giáng Sinh Ấm Áp Dành Tặng Bạn 🎄✨'",
+      "duration_ms": 0.07
+    },
+    {
+      "test_id": "T1.F1.02",
+      "tier": 1,
+      "feature": "F1",
+      "name": "Title contains Christmas and friendship keywords",
+      "passed": true,
+      "detail": "Title contains both Christmas and friendship themes: 'merry christmas - món quà giáng sinh ấm áp dành tặng bạn 🎄✨'",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F1.03",
+      "tier": 1,
+      "feature": "F1",
+      "name": "TapHint has no couple pronouns or romance",
+      "passed": true,
+      "detail": "#tapHint free of couple pronouns: '✨ Chạm vào hộp quà để mở điều bất ngờ bạn nhé! ✨'",
+      "duration_ms": 0.05
+    },
+    {
+      "test_id": "T1.F1.04",
+      "tier": 1,
+      "feature": "F1",
+      "name": "TapHint presents a friendly festive invitation",
+      "passed": true,
+      "detail": "#tapHint presents a warm festive invitation: '✨ Chạm vào hộp quà để mở điều bất ngờ bạn nhé! ✨'",
+      "duration_ms": 0.04
+    },
+    {
+      "test_id": "T1.F1.05",
+      "tier": 1,
+      "feature": "F1",
+      "name": "Card H1 contains no romantic emojis",
+      "passed": true,
+      "detail": "H1 has clean festive greeting without romance emojis: 'Merry Christmas! 🎄✨🎁'",
+      "duration_ms": 0.05
+    },
+    {
+      "test_id": "T1.F1.06",
+      "tier": 1,
+      "feature": "F1",
+      "name": "Settings modal microcopy uses friendly non-romantic phrasing",
+      "passed": true,
+      "detail": "Settings modal uses friendly non-romantic phrasing",
+      "duration_ms": 0.07
+    },
+    {
+      "test_id": "T1.F2.01",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Greeting message variable is defined in JavaScript",
+      "passed": true,
+      "detail": "Greeting message variable found (711 chars)",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T1.F2.02",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Greeting letter has zero forbidden romance terms",
+      "passed": true,
+      "detail": "Greeting message is 100% free of romantic vocabulary",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F2.03",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Greeting letter contains genuine friendship and gratitude keywords",
+      "passed": true,
+      "detail": "Greeting message contains strong friendship themes: ['bạn', 'tình bạn', 'sẻ chia', 'ấm áp', 'an lành', 'niềm vui', 'cảm ơn', 'chân thành', 'thân mến', 'tuyệt vời']",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "T1.F2.04",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Greeting letter length is balanced (450-750 characters)",
+      "passed": true,
+      "detail": "Message length is well balanced: 711 characters",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T1.F2.05",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Typewriter speed interval is configured for smooth delivery",
+      "passed": true,
+      "detail": "Typewriter speed configured at 35ms per character",
+      "duration_ms": 0.1
+    },
+    {
+      "test_id": "T1.F2.06",
+      "tier": 1,
+      "feature": "F2",
+      "name": "Typewriter handles <br> tags without broken rendering",
+      "passed": true,
+      "detail": "Typewriter script includes HTML break tag handling",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F3.01",
+      "tier": 1,
+      "feature": "F3",
+      "name": "Card layout does not rigidly clip content without scroll container",
+      "passed": true,
+      "detail": "Card architecture permits scrollable inner content without clipping",
+      "duration_ms": 0.19
+    },
+    {
+      "test_id": "T1.F3.02",
+      "tier": 1,
+      "feature": "F3",
+      "name": "Card scroll container specifies overflow-y: auto/scroll",
+      "passed": true,
+      "detail": "Card body explicitly defines vertical scrollability (overflow-y: auto)",
+      "duration_ms": 0.13
+    },
+    {
+      "test_id": "T1.F3.03",
+      "tier": 1,
+      "feature": "F3",
+      "name": "Card body specifies overscroll-behavior: contain",
+      "passed": true,
+      "detail": "Scroll container specifies 'overscroll-behavior: contain'",
+      "duration_ms": 0.06
+    },
+    {
+      "test_id": "T1.F3.04",
+      "tier": 1,
+      "feature": "F3",
+      "name": "Card container includes custom scrollbar styling",
+      "passed": true,
+      "detail": "Custom scrollbar styles defined for smooth festive aesthetic",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "T1.F3.05",
+      "tier": 1,
+      "feature": "F3",
+      "name": "Card is structured into header, scrollable body, and footer",
+      "passed": true,
+      "detail": "Card architecture provides clear header, scrollable body, and footer structure",
+      "duration_ms": 0.36
+    },
+    {
+      "test_id": "T1.F4.01",
+      "tier": 1,
+      "feature": "F4",
+      "name": "Body background uses dark holiday twilight gradient",
+      "passed": true,
+      "detail": "Body background uses dark holiday winter twilight palette",
+      "duration_ms": 0.04
+    },
+    {
+      "test_id": "T1.F4.02",
+      "tier": 1,
+      "feature": "F4",
+      "name": "Ambient radial glows use warm gold or festive accents, not pink",
+      "passed": true,
+      "detail": "Ambient glows transition from romantic pinks to warm amber gold / holiday accents",
+      "duration_ms": 0.14
+    },
+    {
+      "test_id": "T1.F4.03",
+      "tier": 1,
+      "feature": "F4",
+      "name": "Three.js PointLight uses warm/amber/holiday tones, not pink",
+      "passed": true,
+      "detail": "Three.js scene lighting uses warm festive/holiday illumination",
+      "duration_ms": 0.74
+    },
+    {
+      "test_id": "T1.F4.04",
+      "tier": 1,
+      "feature": "F4",
+      "name": "Card box-shadow does not use candy pink",
+      "passed": true,
+      "detail": "Card glow and box-shadow uses festive holiday lighting",
+      "duration_ms": 0.07
+    },
+    {
+      "test_id": "T1.F4.05",
+      "tier": 1,
+      "feature": "F4",
+      "name": "Card H1 text gradient does not use candy pink",
+      "passed": true,
+      "detail": "Card H1 text styling uses festive holiday gold/winter palette",
+      "duration_ms": 0.05
+    },
+    {
+      "test_id": "T1.F5.01",
+      "tier": 1,
+      "feature": "F5",
+      "name": "HeartParticle class definition is completely removed",
+      "passed": true,
+      "detail": "HeartParticle class definition has been removed",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "T1.F5.02",
+      "tier": 1,
+      "feature": "F5",
+      "name": "HeartParticle instantiation loop is completely removed",
+      "passed": true,
+      "detail": "Zero HeartParticle instantiations found",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F5.03",
+      "tier": 1,
+      "feature": "F5",
+      "name": "SnowParticle class is defined and instantiated",
+      "passed": true,
+      "detail": "Drifting snow particle system is defined and instantiated",
+      "duration_ms": 0.03
+    },
+    {
+      "test_id": "T1.F5.04",
+      "tier": 1,
+      "feature": "F5",
+      "name": "Twinkling star/bokeh particle system is defined and instantiated",
+      "passed": true,
+      "detail": "Sparkling holiday bokeh/stardust particle system is active",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F5.05",
+      "tier": 1,
+      "feature": "F5",
+      "name": "Particle canvas resizes dynamically on window resize",
+      "passed": true,
+      "detail": "Particle canvas dynamically synchronizes dimensions on window resize",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F6.01",
+      "tier": 1,
+      "feature": "F6",
+      "name": "Music toggle button exists in DOM",
+      "passed": true,
+      "detail": "Music toggle control present in DOM (<button id='musicToggle'>)",
+      "duration_ms": 0.05
+    },
+    {
+      "test_id": "T1.F6.02",
+      "tier": 1,
+      "feature": "F6",
+      "name": "Music toggle button includes accessible label/title",
+      "passed": true,
+      "detail": "Music toggle includes accessible label: 'Bật/Tắt nhạc nền'",
+      "duration_ms": 0.03
+    },
+    {
+      "test_id": "T1.F6.03",
+      "tier": 1,
+      "feature": "F6",
+      "name": "Background audio element exists with loop attribute and audio source",
+      "passed": true,
+      "detail": "Audio element configured with loop and source: './music/Ariana Grande - Santa Tell Me (Lyrics) - Holiday Pop Classic.mp3'",
+      "duration_ms": 0.04
+    },
+    {
+      "test_id": "T1.F6.04",
+      "tier": 1,
+      "feature": "F6",
+      "name": "JavaScript binds event listener to toggle music playback",
+      "passed": true,
+      "detail": "JavaScript event handler for music toggle control is implemented",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T1.F6.05",
+      "tier": 1,
+      "feature": "F6",
+      "name": "CSS defines active/muted visual styling for music toggle",
+      "passed": true,
+      "detail": "CSS contains styling for interactive audio toggle button",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "T1.F7.01",
+      "tier": 1,
+      "feature": "F7",
+      "name": "Viewport meta tag is properly configured",
+      "passed": true,
+      "detail": "Viewport meta configured correctly: 'width=device-width, initial-scale=1.0, viewport-fit=cover'",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F7.02",
+      "tier": 1,
+      "feature": "F7",
+      "name": "CSS uses responsive height units (dvh/vh)",
+      "passed": true,
+      "detail": "CSS uses responsive height units (dvh (modern dynamic viewport))",
+      "duration_ms": 0.04
+    },
+    {
+      "test_id": "T1.F7.03",
+      "tier": 1,
+      "feature": "F7",
+      "name": "CSS utilizes font clamp() for fluid readability",
+      "passed": true,
+      "detail": "CSS applies fluid typography with 3 clamp() definitions",
+      "duration_ms": 0.06
+    },
+    {
+      "test_id": "T1.F7.04",
+      "tier": 1,
+      "feature": "F7",
+      "name": "CSS includes responsive mobile media queries",
+      "passed": true,
+      "detail": "CSS contains responsive media queries covering mobile breakpoints (14 total)",
+      "duration_ms": 0.13
+    },
+    {
+      "test_id": "T1.F7.05",
+      "tier": 1,
+      "feature": "F7",
+      "name": "Interactive buttons have adequate touch target sizing",
+      "passed": true,
+      "detail": "Interactive touch controls comply with accessible hit target dimensions (>= 36px)",
+      "duration_ms": 0.13
+    },
+    {
+      "test_id": "T1.F8.01",
+      "tier": 1,
+      "feature": "F8",
+      "name": "No trailing markdown code fence at end of file",
+      "passed": true,
+      "detail": "File terminates cleanly without stray markdown code fences",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T1.F8.02",
+      "tier": 1,
+      "feature": "F8",
+      "name": "Valid DOCTYPE declaration and lang attribute",
+      "passed": true,
+      "detail": "Document specifies standard DOCTYPE and valid Vietnamese lang attribute (lang='vi')",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T1.F8.03",
+      "tier": 1,
+      "feature": "F8",
+      "name": "Critical DOM containers are properly closed",
+      "passed": true,
+      "detail": "Critical DOM tags paired and cleanly closed (Divs balanced: 30/30)",
+      "duration_ms": 0.18
+    },
+    {
+      "test_id": "T1.F8.04",
+      "tier": 1,
+      "feature": "F8",
+      "name": "JavaScript tags contain clean code with no stray markdown",
+      "passed": true,
+      "detail": "JavaScript code is clean and free of markdown syntax artifacts",
+      "duration_ms": 0.04
+    },
+    {
+      "test_id": "T1.F8.05",
+      "tier": 1,
+      "feature": "F8",
+      "name": "CSS style blocks have balanced curly braces",
+      "passed": true,
+      "detail": "CSS styles have perfectly balanced curly braces (201 pairs)",
+      "duration_ms": 0.02
+    },
+    {
+      "test_id": "T2.B01",
+      "tier": 2,
+      "feature": "Boundary",
+      "name": "Long text wrapping prevents horizontal overflow",
+      "passed": true,
+      "detail": "Card text specifies word-wrapping boundary protection against text blowout",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T2.B02",
+      "tier": 2,
+      "feature": "Boundary",
+      "name": "Card width is bounded on narrow mobile displays (320px-375px)",
+      "passed": true,
+      "detail": "Card container enforces responsive width bounds for 320px-375px mobile displays",
+      "duration_ms": 0.06
+    },
+    {
+      "test_id": "T2.B03",
+      "tier": 2,
+      "feature": "Boundary",
+      "name": "Card height is constrained for mobile landscape orientation",
+      "passed": true,
+      "detail": "Card container enforces max-height constraint for landscape mobile displays",
+      "duration_ms": 0.06
+    },
+    {
+      "test_id": "T2.B04",
+      "tier": 2,
+      "feature": "Boundary",
+      "name": "Audio play() is guarded with catch() against autoplay rejection",
+      "passed": true,
+      "detail": "Audio playback safely encapsulates play() with .catch() rejection handling",
+      "duration_ms": 0.17
+    },
+    {
+      "test_id": "T2.B05",
+      "tier": 2,
+      "feature": "Boundary",
+      "name": "Gift box click handler guards against rapid double click spam",
+      "passed": true,
+      "detail": "Gift box interaction implements state guard against duplicate triggering",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T3.C01",
+      "tier": 3,
+      "feature": "CrossFeature",
+      "name": "Box opening coordinates audio playback and typewriter initialization",
+      "passed": true,
+      "detail": "Box opening harmoniously triggers both audio playback and typewriter delivery",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "T3.C02",
+      "tier": 3,
+      "feature": "CrossFeature",
+      "name": "Typewriter operates smoothly inside scrollable card container",
+      "passed": true,
+      "detail": "Typewriter element is cleanly embedded within the card scroll hierarchy",
+      "duration_ms": 0.11
+    },
+    {
+      "test_id": "T3.C03",
+      "tier": 3,
+      "feature": "CrossFeature",
+      "name": "Settings modal z-index takes precedence over greeting card and canvas",
+      "passed": true,
+      "detail": "Z-index layering correctly ordered: Modal (200) > Card (20)",
+      "duration_ms": 0.11
+    },
+    {
+      "test_id": "T4.R01",
+      "tier": 4,
+      "feature": "VisualRender",
+      "name": "Chrome Headless 1920x1080 Desktop snapshot capture",
+      "passed": true,
+      "detail": "Skipped by --skip-chrome flag",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T4.R02",
+      "tier": 4,
+      "feature": "VisualRender",
+      "name": "Chrome Headless 768x1024 Tablet snapshot capture",
+      "passed": true,
+      "detail": "Skipped by --skip-chrome flag",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T4.R03",
+      "tier": 4,
+      "feature": "VisualRender",
+      "name": "Chrome Headless 375x667 Mobile Portrait snapshot capture",
+      "passed": true,
+      "detail": "Skipped by --skip-chrome flag",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T4.R04",
+      "tier": 4,
+      "feature": "VisualRender",
+      "name": "Chrome Headless 667x375 Mobile Landscape snapshot capture",
+      "passed": true,
+      "detail": "Skipped by --skip-chrome flag",
+      "duration_ms": 0.0
+    },
+    {
+      "test_id": "T4.R05",
+      "tier": 4,
+      "feature": "VisualRender",
+      "name": "All generated screenshot files are valid PNGs with substantial payload",
+      "passed": true,
+      "detail": "Skipped by --skip-chrome flag",
+      "duration_ms": 0.0
+    }
+  ]
+}
